@@ -4,10 +4,10 @@ const KeyCode = {
   RIGHT_ARROW: 39
 };
 const container = document.querySelector(`main.central`);
-const templateList = document.querySelectorAll(`template`);
+const templateList = [...document.querySelectorAll(`template`)];
 
 // карта соответствия имени экрана и элемента с таким id
-const nameToTemplate = Array.prototype.reduce.call(templateList, (acc, it) => {
+const nameToTemplate = templateList.reduce((acc, it) => {
   acc[it.id] = it;
   return acc;
 }, {});
