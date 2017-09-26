@@ -40,19 +40,21 @@ const showNextScreen = () => {
   }
 };
 
-document.addEventListener(`keydown`, (evt) => {
+const onKeyPressed = (evt) => {
   if (!evt.altKey) {
     return;
   }
 
-  evt.preventDefault();
-
   switch (evt.keyCode) {
     case KeyCode.LEFT_ARROW:
+      evt.preventDefault();
       showPrevScreen();
       break;
     case KeyCode.RIGHT_ARROW:
+      evt.preventDefault();
       showNextScreen();
       break;
   }
-});
+};
+
+document.addEventListener(`keydown`, onKeyPressed);
