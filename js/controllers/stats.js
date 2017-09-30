@@ -1,14 +1,15 @@
 import getElement from './get-element';
-import render from '../views/render';
-
 import greating from './greating';
-
+import render from '../views/render';
 import statsTemplate from '../models/stats';
 
 const stats = getElement(statsTemplate);
-
 const backButton = stats.querySelector(`.back`);
 
+/**
+ * Возвращает на экран приветствия
+ * @param {MouseEvent} evt
+ */
 const onBackButtonClicked = (evt) => {
   evt.preventDefault();
   render(greating);
