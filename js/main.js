@@ -1,5 +1,4 @@
-import Controller from './controller/controller';
+import render from './views/render';
+import intro from './controllers/intro';
 
-const controller = new Controller();
-
-controller.showStartScreen();
+render(intro);
