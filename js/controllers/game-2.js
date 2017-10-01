@@ -1,8 +1,7 @@
-import gameThree from './game-3';
-import gameTwoTemplate from '../models/game-2';
+import gameTwoTemplate from '../views/game-2';
 import getElement from './get-element';
-import greating from './greating';
-import render from '../views/render';
+import onBackButtonClicked from './back-button-handler';
+import render from '../router/render';
 
 const gameTwo = getElement(gameTwoTemplate);
 const backButton = gameTwo.querySelector(`.back`);
@@ -19,17 +18,8 @@ const answers = Array.from(form.querySelectorAll(`input[name="question1"]`));
  */
 const onChange = () => {
   if (answers.some((it) => it.checked)) {
-    render(gameThree);
+    render(`gameThree`);
   }
-};
-
-/**
- * Возвращает на экран приветствия
- * @param {MouseEvent} evt
- */
-const onBackButtonClicked = (evt) => {
-  evt.preventDefault();
-  render(greating);
 };
 
 backButton.addEventListener(`click`, onBackButtonClicked);

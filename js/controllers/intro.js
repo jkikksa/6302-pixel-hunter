@@ -1,7 +1,6 @@
 import getElement from './get-element';
-import greating from './greating';
-import introTemplate from '../models/intro';
-import render from '../views/render';
+import introTemplate from '../views/intro';
+import render from '../router/render';
 
 const intro = getElement(introTemplate);
 const nextButton = intro.querySelector(`.intro__asterisk`);
@@ -12,7 +11,7 @@ const nextButton = intro.querySelector(`.intro__asterisk`);
  */
 const onNextButtonClick = (evt) => {
   evt.preventDefault();
-  render(greating);
+  render(`greeting`);
 };
 
 nextButton.addEventListener(`click`, onNextButtonClick);

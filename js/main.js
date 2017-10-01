@@ -1,4 +1,3 @@
-import render from './views/render';
-import intro from './controllers/intro';
+import render from './router/render';
 
-render(intro);
+render(`intro`);

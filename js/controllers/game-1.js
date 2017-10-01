@@ -1,8 +1,7 @@
-import gameOneTemplate from '../models/game-1';
-import gameTwo from './game-2';
+import gameOneTemplate from '../views/game-1';
 import getElement from './get-element';
-import greating from './greating';
-import render from '../views/render';
+import onBackButtonClicked from './back-button-handler';
+import render from '../router/render';
 
 const gameOne = getElement(gameOneTemplate);
 const backButton = gameOne.querySelector(`.back`);
@@ -21,20 +20,11 @@ const firstAnswers = Array.from(form.querySelectorAll(`input[name="question1"]`)
 const secondAnswers = Array.from(form.querySelectorAll(`input[name="question2"]`));
 
 /**
- * Возвращает на экран приветствия
- * @param {MouseEvent} evt
- */
-const onBackButtonClicked = (evt) => {
-  evt.preventDefault();
-  render(greating);
-};
-
-/**
  * В случае, если два ответа выбраны переключает на следующий экран
  */
 const onChange = () => {
   if (firstAnswers.some((it) => it.checked) && secondAnswers.some((it) => it.checked)) {
-    render(gameTwo);
+    render(`gameTwo`);
   }
 };
 
