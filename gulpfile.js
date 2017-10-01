@@ -11,6 +11,7 @@ const mqpacker = require('css-mqpacker');
 const minify = require('gulp-csso');
 const rename = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
+const rollup = require('rollup');
 
 gulp.task('style', function () {
   return gulp.src('sass/style.scss')
@@ -41,11 +42,23 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('build/js/'));
 });
 
+gulp.task('scripts', async function () {
+  const bundle = await rollup.rollup({
+    input: './js/main.js',
+  });
+
+  await bundle.write({
+    file: './build/js/bundle.js',
+    format: 'iife',
+    sourcemap: true
+  });
+});
+
 gulp.task('test', function () {
 });
 
 gulp.task('imagemin', ['copy'], function () {
-  return gulp.src('build/img/**/*.{jpg,png,gif}')
+  return gulp.src('img/**/*.{jpg,png,gif}')
     .pipe(imagemin([
       imagemin.optipng({optimizationLevel: 3}),
       imagemin.jpegtran({progressive: true})
@@ -81,8 +94,8 @@ gulp.task('serve', ['assemble'], function () {
   server.init({
     server: './build',
     notify: false,
-    open: true,
-    port: 3502,
+    open: false,
+    port: 3000,
     ui: false
   });
 
