@@ -7,10 +7,12 @@
     "eslint": "eslint js/",
     "build": "gulp build",
     "start": "gulp serve",
-    "test": "npm run eslint && gulp test"
+    "test": "mocha js/**/*.test.js -r babel-register -R spec && npm run eslint"
   },
   "devDependencies": {
     "autoprefixer": "6.7.7",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-register": "^6.26.0",
     "browser-sync": "2.18.8",
     "css-mqpacker": "6.0.0",
     "del": "2.2.2",
@@ -23,6 +25,7 @@
     "gulp-postcss": "7.0.0",
     "gulp-rename": "1.2.2",
     "gulp-sass": "3.1.0",
+    "mocha": "^4.0.0",
     "rollup": "^0.50.0"
   },
   "engines": {
