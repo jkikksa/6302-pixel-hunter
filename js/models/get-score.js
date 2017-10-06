@@ -12,7 +12,7 @@ const Scores = {
 
 /**
  * Кол-во очков начисляемых за оставшуюся жизнь
- * @type {тumber}
+ * @type {number}
  */
 const REMAINING_LIFE_SCORE = 50;
 

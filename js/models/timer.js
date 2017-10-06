@@ -3,15 +3,15 @@
  * @constructor
  * @param {time} Время, на которое устанавливается таймер
  */
-export default class ClassName {
+class Timer {
   constructor(time) {
     this.time = time < 0 ? 0 : time;
-    this.isExpired = this.time === 0 ? true : false;
+    this.isExpired = this.time === 0;
   }
 
   /**
    * Уменьшает время на единицу.
-   * При достижении конца сообщить о том, что таймер закончен
+   * При достижении конца сообщает о том, что таймер закончен
    * @return {number|string} [description]
    */
   tick() {
@@ -26,3 +26,5 @@ export default class ClassName {
     return this.time;
   }
 }
+
+export default Timer;
