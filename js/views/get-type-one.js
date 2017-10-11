@@ -6,7 +6,7 @@ export default (data, state) => {
       <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
       <form class="game__content">
         <div class="game__option">
-          <img src="${data.image1}" alt="Option 1" width="468" height="458">
+          <img src="${data.question1}" alt="Option 1" width="468" height="458">
           <label class="game__answer game__answer--photo">
             <input name="question1" type="radio" value="photo">
             <span>Фото</span>
@@ -17,7 +17,7 @@ export default (data, state) => {
           </label>
         </div>
         <div class="game__option">
-          <img src="${data.image2}" alt="Option 2" width="468" height="458">
+          <img src="${data.question2}" alt="Option 2" width="468" height="458">
           <label class="game__answer  game__answer--photo">
             <input name="question2" type="radio" value="photo">
             <span>Фото</span>
@@ -28,7 +28,9 @@ export default (data, state) => {
           </label>
         </div>
       </form>
-      ${getStatsBar(state)}
+      <div class="stats">
+        ${getStatsBar(state.answers)}
+      </div>
     </div>
   `;
 };

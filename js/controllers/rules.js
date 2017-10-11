@@ -1,10 +1,9 @@
-import getElement from './get-element';
 import onBackButtonClicked from './back-button-handler';
 import render from '../router/render';
 import rulesTemplate from '../views/rules';
 
 export default (state) => {
-  const rules = getElement(rulesTemplate);
+  const rules = rulesTemplate();
   const form = rules.querySelector(`.rules__form`);
   const nameField = form.querySelector(`.rules__input`);
   const submitButton = form.querySelector(`.rules__button.continue`);
@@ -26,7 +25,7 @@ export default (state) => {
   const onFormSubmit = (evt) => {
     evt.preventDefault();
     state.playerName = nameField.value;
-    render(`question1`, state);
+    render(`game`, state);
   };
 
   backButton.addEventListener(`click`, onBackButtonClicked);

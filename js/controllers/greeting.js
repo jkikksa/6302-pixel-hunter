@@ -1,10 +1,8 @@
-import getElement from './get-element';
 import greetingTemplate from '../views/greeting';
 import render from '../router/render';
 
 export default (state) => {
-  console.log(state);
-  const greeting = getElement(greetingTemplate);
+  const greeting = greetingTemplate();
   const nextButton = greeting.querySelector(`.greeting__continue`);
 
   /**

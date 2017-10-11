@@ -1,18 +1,16 @@
-export default (state) => {
+export default (answers) => {
+
+  const statsBarTemplate = answers.map((it) => {
+    if (it.correctness === `correct`) {
+      return `<li class="stats__result stats__result--correct"></li>`;
+    } else {
+      return `<li class="stats__result stats__result--wrong"></li>`;
+    }
+  }).concat(new Array(10 - answers.length).fill(`<li class="stats__result stats__result--unknown"></li>`)).join(``);
+
   return `
-    <div class="stats">
-      <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-      </ul>
-    </div>
+    <ul class="stats">
+      ${statsBarTemplate};
+    </ul>
   `;
 };

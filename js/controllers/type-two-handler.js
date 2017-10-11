@@ -4,23 +4,16 @@ export default (element, state, answer) => {
   const form = element.querySelector(`.game__content`);
 
   /**
-   * Список вариантов ответа (чекбоксы) первого вопроса
+   * Список вариантов ответа (чекбоксы)
    * @type {Array<Element>}
    */
   const firstAnswers = Array.from(form.querySelectorAll(`input[name="question1"]`));
-
-  /**
-   * Список вариантов ответа (чекбоксы) первого вопроса
-   * @type {Array<Element>}
-   */
-  const secondAnswers = Array.from(form.querySelectorAll(`input[name="question2"]`));
 
   /**
    * В случае, если два ответа выбраны переключает на следующий экран
    */
   const onChange = () => {
     const isFirstAnswersChecked = firstAnswers.some((it) => it.checked);
-    const isSecondAnswersChecked = secondAnswers.some((it) => it.checked);
 
     const isFirstAnswerRight = firstAnswers.some((it) => {
       if (it.checked) {
@@ -29,19 +22,10 @@ export default (element, state, answer) => {
       return false;
     });
 
-    const isSecondAnswerRight = secondAnswers.some((it) => {
-      if (it.checked) {
-        return it.value === answer.question2;
-      }
-      return false;
-    });
+    if (isFirstAnswersChecked) {
+      state.setAnswer(isFirstAnswerRight, `normal`);
 
-    const isAllAnwersRight = isFirstAnswerRight && isSecondAnswerRight;
-
-    if (isFirstAnswersChecked && isSecondAnswersChecked) {
-      state.setAnswer(isAllAnwersRight, `normal`);
-
-      if (!isAllAnwersRight) {
+      if (!isFirstAnswerRight) {
         state.decreaseLive();
       }
 

@@ -1,10 +1,8 @@
-import getElement from './get-element';
 import introTemplate from '../views/intro';
 import render from '../router/render';
 
 export default (state) => {
-  console.log(state);
-  const intro = getElement(introTemplate);
+  const intro = introTemplate();
   const nextButton = intro.querySelector(`.intro__asterisk`);
 
   /**

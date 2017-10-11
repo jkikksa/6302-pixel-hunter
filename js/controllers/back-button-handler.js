@@ -1,4 +1,5 @@
 import render from '../router/render';
+import InitialState from '../models/initial-state';
 
 /**
  * Возвращает на экран приветствия
@@ -6,5 +7,6 @@ import render from '../router/render';
  */
 export default (evt) => {
   evt.preventDefault();
-  render(`greeting`);
+  const state = new InitialState();
+  render(`greeting`, state);
 };
