@@ -1,3 +1,5 @@
 import render from './router/render';
+import InitialState from './models/initial-state';
 
-render(`intro`);
+const state = new InitialState();
+render(`intro`, state);

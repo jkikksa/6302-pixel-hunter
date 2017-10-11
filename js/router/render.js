@@ -1,6 +1,14 @@
-import gameOne from '../controllers/game-1';
-import gameThree from '../controllers/game-3';
-import gameTwo from '../controllers/game-2';
+import question1 from '../controllers/question-1';
+// import question2 from '../controllers/question-2';
+// import question3 from '../controllers/question-3';
+// import question4 from '../controllers/question-4';
+// import question5 from '../controllers/question-5';
+// import question6 from '../controllers/question-6';
+// import question7 from '../controllers/question-7';
+// import question8 from '../controllers/question-8';
+// import question9 from '../controllers/question-9';
+// import question10 from '../controllers/question-10';
+
 import greeting from '../controllers/greeting';
 import intro from '../controllers/intro';
 import rules from '../controllers/rules';
@@ -10,13 +18,20 @@ import stats from '../controllers/stats';
  * Список экранов
  * @enum {Element}
  */
-const STATES = {
-  'gameOne': gameOne,
-  'gameThree': gameThree,
-  'gameTwo': gameTwo,
-  'greeting': greeting,
+const LEVELS = {
   'intro': intro,
+  'greeting': greeting,
   'rules': rules,
+  'question1': question1,
+  // 'question2': question2,
+  // 'question3': question3,
+  // 'question4': question4,
+  // 'question5': question5,
+  // 'question6': question6,
+  // 'question7': question7,
+  // 'question8': question8,
+  // 'question9': question9,
+  // 'question10': question10,
   'stats': stats,
 };
 
@@ -37,7 +52,7 @@ const clearView = () => {
  * Показывает необходимый экран
  * @param {Element} view Экран
  */
-export default (view) => {
+export default (view, state) => {
   clearView();
-  container.appendChild(STATES[view]);
+  container.appendChild((LEVELS[view])(state));
 };
