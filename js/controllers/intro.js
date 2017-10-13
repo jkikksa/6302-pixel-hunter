@@ -1,7 +1,7 @@
 import introTemplate from '../views/intro';
 import render from '../router/render';
 
-export default (state) => {
+export default () => {
   const intro = introTemplate();
   const nextButton = intro.querySelector(`.intro__asterisk`);
 
@@ -11,7 +11,7 @@ export default (state) => {
    */
   const onNextButtonClick = (evt) => {
     evt.preventDefault();
-    render(`greeting`, state);
+    render(`greeting`);
   };
 
   nextButton.addEventListener(`click`, onNextButtonClick);

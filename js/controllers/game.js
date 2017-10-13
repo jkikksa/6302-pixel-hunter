@@ -5,8 +5,9 @@ import onBackButtonClicked from './back-button-handler';
 import typeOneHandler from './type-one-handler';
 import typeThreeHandler from './type-three-handler';
 import typeTwoHandler from './type-two-handler';
+import state from '../models/state';
 
-export default (state) => {
+export default () => {
   console.log(state);
 
   const map = {

@@ -1,3 +1,5 @@
+// @ts-check
+
 const ANSWERS = [
   {
     id: 0,
@@ -23,9 +25,8 @@ const ANSWERS = [
 ];
 
 /**
- * [description]
- * @param {number} id [description]
- * @return {Object}    [description]
+ * @param {number} id
+ * @return {Object}
  */
 export default (id) => {
   return ANSWERS.find((it) => it.id === id);

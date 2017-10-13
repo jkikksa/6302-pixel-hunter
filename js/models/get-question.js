@@ -1,3 +1,5 @@
+// @ts-check
+
 const QUESTIONS = [
   {
     id: 0,
@@ -25,6 +27,12 @@ const QUESTIONS = [
   }
 ];
 
+/**
+ *
+ * @param {number} min
+ * @param {number} max
+ * @return {number}
+ */
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };

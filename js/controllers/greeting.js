@@ -1,7 +1,7 @@
 import greetingTemplate from '../views/greeting';
 import render from '../router/render';
 
-export default (state) => {
+export default () => {
   const greeting = greetingTemplate();
   const nextButton = greeting.querySelector(`.greeting__continue`);
 
@@ -11,7 +11,7 @@ export default (state) => {
    */
   const onNextButtonClick = (evt) => {
     evt.preventDefault();
-    render(`rules`, state);
+    render(`rules`);
   };
 
   nextButton.addEventListener(`click`, onNextButtonClick);
