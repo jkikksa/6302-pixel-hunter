@@ -1,8 +1,8 @@
 import intro from '../intro/intro';
 import greeting from '../greeting/greeting';
-// import rules from '../controllers/rules';
-// import game from '../controllers/game';
-// import stats from '../controllers/stats';
+import rules from '../rules/rules';
+import game from '../game/game';
+import stats from '../stats/stats';
 
 /**
  * Список экранов
@@ -11,9 +11,9 @@ import greeting from '../greeting/greeting';
 const LEVELS = {
   'intro': intro,
   'greeting': greeting,
-  // 'rules': rules,
-  // 'game': game,
-  // 'stats': stats,
+  'rules': rules,
+  'game': game,
+  'stats': stats,
 };
 
 /**

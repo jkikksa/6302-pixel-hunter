@@ -1,12 +1,11 @@
 import GreetingView from './greeting-view';
 import changeView from '../router/change-view';
 
-const greeting = new GreetingView();
-
-greeting.onNextButtonClick = (evt) => {
+const onNextButtonClick = (evt) => {
   evt.preventDefault();
-  console.log(evt.target);
-  // changeView(`greeting`);
+  changeView(`rules`);
 };
+
+const greeting = new GreetingView(onNextButtonClick);
 
 export default () => greeting;

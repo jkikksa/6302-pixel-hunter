@@ -3,7 +3,7 @@ const map = {
   false: `incorrect`
 };
 
-class InitialState {
+export class InitialState {
   constructor() {
     this.lives = 3;
     this.currentScreen = ``;
@@ -12,16 +12,20 @@ class InitialState {
     this.answers = [];
   }
 
-  setAnswer(correctness, type) {
+  setName(name) {
+    this.playerName = name;
+  }
+
+  addAnswer(correctness, type) {
     this.answers.push({
       correctness: map[correctness],
       type
     });
   }
 
-  decreaseLive() {
+  decreaseLives() {
     this.lives--;
   }
 }
 
-export default InitialState;
+export const state = new InitialState();
