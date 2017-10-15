@@ -1,3 +1,3 @@
-import render from './router/render';
+import changeView from './router/change-view';
 
-render(`intro`);
+changeView(`intro`);

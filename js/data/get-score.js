@@ -22,7 +22,7 @@ const REMAINING_LIFE_SCORE = 50;
  * @param {number} remainingLifes Количество оставшихся жизней
  * @return {number} Количество набранных очков
  */
-export default (answers, remainingLifes) => {
+const getScore = (answers, remainingLifes) => {
   if (answers.length < 10) {
     return -1;
   }
@@ -33,3 +33,5 @@ export default (answers, remainingLifes) => {
 
   return answersScore + remainingLifes * REMAINING_LIFE_SCORE;
 };
+
+export default getScore;
