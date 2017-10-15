@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+import footer from '../footer/footer';
 
 class GreetingView extends AbstractView {
   constructor(cb) {
@@ -21,8 +22,7 @@ class GreetingView extends AbstractView {
   </div>
   <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
 </div>
-${this.footerTemplate}\
-  `;
+${footer().getTemplate()}`;
   }
 
   bind() {

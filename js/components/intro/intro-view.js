@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+import footer from '../footer/footer';
 
 class IntroView extends AbstractView {
   constructor(cb) {
@@ -14,8 +15,7 @@ class IntroView extends AbstractView {
     <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
   </div>
 </div>
-${this.footerTemplate}\
-  `;
+${footer().getTemplate()}`;
   }
 
   bind() {

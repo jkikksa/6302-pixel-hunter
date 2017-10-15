@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+import footer from '../footer/footer';
 
 class StatsView extends AbstractView {
   constructor(onBackButtonClicked, score, state) {
@@ -71,7 +72,7 @@ class StatsView extends AbstractView {
     </tr>
   </table>
 </div>
-${this.footerTemplate}`;
+${footer().getTemplate()}`;
   }
 
   bind() {

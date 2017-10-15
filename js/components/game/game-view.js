@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+import footer from '../footer/footer';
 
 class GameView extends AbstractView {
   constructor(data) {
@@ -83,7 +84,7 @@ class GameView extends AbstractView {
     ${this.getStatsBar()}
   </div>
 </div>
-${this.footerTemplate}`;
+${footer().getTemplate()}`;
   }
 
   getTypeTwo() {
@@ -107,7 +108,7 @@ ${this.footerTemplate}`;
     ${this.getStatsBar()}
   </div>
 </div>
-${this.footerTemplate}`;
+${footer().getTemplate()}`;
   }
 
   getTypeThree() {
@@ -129,7 +130,7 @@ ${this.footerTemplate}`;
     ${this.getStatsBar()}
   </div>
 </div>
-${this.footerTemplate}`;
+${footer().getTemplate()}`;
   }
 
   getTemplate() {

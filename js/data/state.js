@@ -1,6 +1,9 @@
-const map = {
-  true: `correct`,
-  false: `incorrect`
+/**
+ * @enum {string}
+ */
+const AnswersMap = {
+  TRUE: `correct`,
+  FALSE: `incorrect`
 };
 
 export class InitialState {
@@ -12,13 +15,22 @@ export class InitialState {
     this.answers = [];
   }
 
+  /**
+   * Сохраняет имя пользователя
+   * @param {string} name
+   */
   setName(name) {
     this.playerName = name;
   }
 
+  /**
+   * Добавляет ответ
+   * @param {string} correctness
+   * @param {string} type
+   */
   addAnswer(correctness, type) {
     this.answers.push({
-      correctness: map[correctness],
+      correctness: AnswersMap[correctness.toUpperCase()],
       type
     });
   }

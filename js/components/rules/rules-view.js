@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+import footer from '../footer/footer';
 
 class RulesView extends AbstractView {
   constructor(onBackButtonClicked, onNameFieldInput, onFormSubmit) {
@@ -34,7 +35,7 @@ class RulesView extends AbstractView {
     <button class="rules__button  continue" type="submit" disabled>Go!</button>
   </form>
 </div>
-${this.footerTemplate}`;
+${footer().getTemplate()}`;
   }
 
   bind() {

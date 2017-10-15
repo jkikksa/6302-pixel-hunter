@@ -6,7 +6,7 @@ import {state} from '../../data/state';
  * @param {boolean} isCorrect Тип ответа. Правильный или неправильный.
  */
 export const onAnswerCheck = (isCorrect) => {
-  state.addAnswer(isCorrect, `normal`);
+  state.addAnswer(`${isCorrect}`, `normal`);
 
   if (!isCorrect) {
     state.decreaseLives();
