@@ -71,7 +71,7 @@ class StatsView extends AbstractView {
     </tr>
   </table>
 </div>
-${this._footerTemplate}`;
+${this.footerTemplate}`;
   }
 
   bind() {

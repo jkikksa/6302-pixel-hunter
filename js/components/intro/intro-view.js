@@ -14,7 +14,7 @@ class IntroView extends AbstractView {
     <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
   </div>
 </div>
-${this._footerTemplate}\
+${this.footerTemplate}\
   `;
   }
 

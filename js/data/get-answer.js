@@ -1,5 +1,3 @@
-// @ts-check
-
 const ANSWERS = [
   {
     id: 0,
@@ -25,6 +23,7 @@ const ANSWERS = [
 ];
 
 /**
+ * Возвращает объект ответа с нужным id
  * @param {number} id
  * @return {Object}
  */

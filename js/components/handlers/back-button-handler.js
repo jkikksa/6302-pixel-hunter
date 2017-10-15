@@ -1,5 +1,4 @@
-import changeView from '../router/change-view';
-// import InitialState from '../models/initial-state';
+import changeView from '../../router/change-view';
 
 /**
  * Возвращает на экран приветствия

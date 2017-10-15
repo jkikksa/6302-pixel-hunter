@@ -1,5 +1,3 @@
-// @ts-check
-
 const QUESTIONS = [
   {
     id: 0,
@@ -28,7 +26,7 @@ const QUESTIONS = [
 ];
 
 /**
- *
+ * Возвращает случайное целое число.
  * @param {number} min
  * @param {number} max
  * @return {number}
@@ -37,6 +35,10 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
+/**
+ * Возвращает случайный объект вопроса.
+ * @return {Object}
+ */
 const getRandomElement = () => {
   return QUESTIONS[getRandomInt(0, QUESTIONS.length)];
 };

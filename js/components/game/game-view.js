@@ -83,7 +83,7 @@ class GameView extends AbstractView {
     ${this.getStatsBar()}
   </div>
 </div>
-${this._footerTemplate}`;
+${this.footerTemplate}`;
   }
 
   getTypeTwo() {
@@ -107,7 +107,7 @@ ${this._footerTemplate}`;
     ${this.getStatsBar()}
   </div>
 </div>
-${this._footerTemplate}`;
+${this.footerTemplate}`;
   }
 
   getTypeThree() {
@@ -129,7 +129,7 @@ ${this._footerTemplate}`;
     ${this.getStatsBar()}
   </div>
 </div>
-${this._footerTemplate}`;
+${this.footerTemplate}`;
   }
 
   getTemplate() {

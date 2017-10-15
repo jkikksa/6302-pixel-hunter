@@ -34,8 +34,7 @@ class RulesView extends AbstractView {
     <button class="rules__button  continue" type="submit" disabled>Go!</button>
   </form>
 </div>
-${this._footerTemplate}\
-  `;
+${this.footerTemplate}`;
   }
 
   bind() {

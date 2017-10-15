@@ -1,8 +1,8 @@
-import intro from '../intro/intro';
-import greeting from '../greeting/greeting';
-import rules from '../rules/rules';
-import game from '../game/game';
-import stats from '../stats/stats';
+import intro from '../components/intro/intro';
+import greeting from '../components/greeting/greeting';
+import rules from '../components/rules/rules';
+import game from '../components/game/game';
+import stats from '../components/stats/stats';
 
 /**
  * Список экранов
