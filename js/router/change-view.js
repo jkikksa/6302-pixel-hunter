@@ -26,7 +26,7 @@ const container = document.querySelector(`main.central`);
  * Показывает необходимый экран
  * @param {Element} view Экран
  */
-export default (view) => {
+export default (view, state) => {
   container.innerHTML = ``;
-  container.appendChild((LEVELS[view])().element);
+  container.appendChild((LEVELS[view])(state).element);
 };

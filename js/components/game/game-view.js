@@ -11,7 +11,7 @@ class GameView extends AbstractView {
     this.state = data.state;
   }
 
-  getHeader() {
+  getHeader(timeLeft) {
     return `\
 <header class="header">
   <div class="header__back">
@@ -20,7 +20,7 @@ class GameView extends AbstractView {
       <img src="img/logo_small.svg" width="101" height="44">
     </button>
   </div>
-  <h1 class="game__timer">${this.state.timeLeft}</h1>
+  <h1 class="game__timer">${timeLeft}</h1>
   ${this.getLives()}
 </header>`;
   }
@@ -138,19 +138,19 @@ ${footer().template}`;
     switch (this.questionType) {
       case `typeOne`:
         return `
-${this.getHeader()}
+${this.getHeader(this.state.timeLeft)}
 ${this.getTypeOne()}
         `;
 
       case `typeTwo`:
         return `
-${this.getHeader()}
+${this.getHeader(this.state.timeLeft)}
 ${this.getTypeTwo()}
         `;
 
       case `typeThree`:
         return `
-${this.getHeader()}
+${this.getHeader(this.state.timeLeft)}
 ${this.getTypeThree()}
         `;
     }
@@ -161,6 +161,7 @@ ${this.getTypeThree()}
   bind() {
     const game = this.element;
     const form = game.querySelector(`.game__content`);
+    this.timeElement = this.element.querySelector(`.game__timer`);
     const backButton = game.querySelector(`.back`);
 
     backButton.addEventListener(`click`, (evt) => {
@@ -205,6 +206,10 @@ ${this.getTypeThree()}
         }
         break;
     }
+  }
+
+  updateTime(time) {
+    this.timeElement.textContent = time;
   }
 }
 

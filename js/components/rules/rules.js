@@ -1,7 +1,7 @@
 import RulesView from './rules-view';
 import changeView from '../../router/change-view';
 import onBackButtonClicked from '../handlers/back-button-handler';
-import {state} from '../../data/state';
+import state from '../../data/state2';
 
 export default () => {
 
@@ -12,8 +12,8 @@ export default () => {
    */
   const onFormSubmit = (evt, nameField) => {
     evt.preventDefault();
-    state.setName(nameField.value);
-    changeView(`game`);
+
+    changeView(`game`, state.setName(state, nameField.value));
   };
 
   /**

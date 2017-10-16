@@ -1,25 +1,25 @@
 import changeView from '../../router/change-view';
-import {state} from '../../data/state';
+// import {state} from '../../data/state';
 
 /**
  * По результату ответа пользователя делает какие-то действия
  * @param {boolean} isCorrect Тип ответа. Правильный или неправильный.
  */
-export const onAnswerCheck = (isCorrect) => {
-  state.addAnswer(`${isCorrect}`, `normal`);
+export const onAnswerCheck = (isCorrect, state) => {
 
-  if (!isCorrect) {
-    state.decreaseLives();
-  }
+  const newLivesCount = isCorrect ? state.lives : --state.lives;
+  const newState = state.addAnswer(state.setLives(state, newLivesCount), `${isCorrect}`, `normal`);
 
-  if (state.answers.length >= 10) {
-    changeView(`stats`);
+  if (newState.answers.length >= 10) {
+    changeView(`stats`, newState);
     return;
   }
 
-  if (state.lives > 0) {
-    changeView(`game`);
+  if (newState.lives > 0) {
+    changeView(`game`, newState);
+    return;
   } else {
-    changeView(`stats`);
+    changeView(`stats`, newState);
+    return;
   }
 };
