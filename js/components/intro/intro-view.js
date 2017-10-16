@@ -7,7 +7,7 @@ class IntroView extends AbstractView {
     this.onNextButtonClick = cb;
   }
 
-  getTemplate() {
+  get template() {
     return `\
 <div id="main" class="central__content">
   <div id="intro" class="intro">
@@ -15,11 +15,11 @@ class IntroView extends AbstractView {
     <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
   </div>
 </div>
-${footer().getTemplate()}`;
+${footer().template}`;
   }
 
   bind() {
-    const intro = this.getElement();
+    const intro = this.element;
     const nextButton = intro.querySelector(`.intro__asterisk`);
 
     nextButton.addEventListener(`click`, this.onNextButtonClick);

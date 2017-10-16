@@ -28,5 +28,5 @@ const container = document.querySelector(`main.central`);
  */
 export default (view) => {
   container.innerHTML = ``;
-  container.appendChild((LEVELS[view])().getElement());
+  container.appendChild((LEVELS[view])().element);
 };

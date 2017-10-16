@@ -9,7 +9,7 @@ class RulesView extends AbstractView {
     this.onFormSubmit = onFormSubmit;
   }
 
-  getTemplate() {
+  get template() {
     return `\
 <header class="header">
   <div class="header__back">
@@ -35,11 +35,11 @@ class RulesView extends AbstractView {
     <button class="rules__button  continue" type="submit" disabled>Go!</button>
   </form>
 </div>
-${footer().getTemplate()}`;
+${footer().template}`;
   }
 
   bind() {
-    const rules = this.getElement();
+    const rules = this.element;
     const form = rules.querySelector(`.rules__form`);
     const nameField = form.querySelector(`.rules__input`);
     const submitButton = form.querySelector(`.rules__button.continue`);

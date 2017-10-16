@@ -25,7 +25,7 @@ class StatsView extends AbstractView {
   `;
   }
 
-  getTemplate() {
+  get template() {
     return `\
 <header class="header">
   <div class="header__back">
@@ -72,7 +72,7 @@ class StatsView extends AbstractView {
     </tr>
   </table>
 </div>
-${footer().getTemplate()}`;
+${footer().template}`;
   }
 
   bind() {

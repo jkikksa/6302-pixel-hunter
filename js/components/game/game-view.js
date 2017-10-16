@@ -84,7 +84,7 @@ class GameView extends AbstractView {
     ${this.getStatsBar()}
   </div>
 </div>
-${footer().getTemplate()}`;
+${footer().template}`;
   }
 
   getTypeTwo() {
@@ -108,7 +108,7 @@ ${footer().getTemplate()}`;
     ${this.getStatsBar()}
   </div>
 </div>
-${footer().getTemplate()}`;
+${footer().template}`;
   }
 
   getTypeThree() {
@@ -130,10 +130,10 @@ ${footer().getTemplate()}`;
     ${this.getStatsBar()}
   </div>
 </div>
-${footer().getTemplate()}`;
+${footer().template}`;
   }
 
-  getTemplate() {
+  get template() {
 
     switch (this.questionType) {
       case `typeOne`:
@@ -159,7 +159,7 @@ ${this.getTypeThree()}
   }
 
   bind() {
-    const game = this.getElement();
+    const game = this.element;
     const form = game.querySelector(`.game__content`);
     const backButton = game.querySelector(`.back`);
 
