@@ -11,6 +11,10 @@ const update = (container, view) => {
 };
 
 class GameView extends AbstractView {
+  constructor(onBackButtonClicked) {
+    super();
+    this.onBackButtonClicked = onBackButtonClicked;
+  }
 
   get template() {
 
@@ -20,20 +24,20 @@ class GameView extends AbstractView {
 ${footer.template}`;
   }
 
-  updateHeader(timeleft) {
-    update(this.headerContainer, new HeaderView(timeleft));
+  updateHeader(timeleft, lives) {
+    update(this.headerContainer, new HeaderView(timeleft, lives, this.onBackButtonClicked));
   }
 
-  updateGame(question, onAnswer) {
+  updateGame(question, onAnswer, answers = []) {
     switch (question.type) {
       case `typeOne`:
-        update(this.gameContainer, new GameOneView(question.data, onAnswer));
+        update(this.gameContainer, new GameOneView(question.data, onAnswer, answers));
         break;
       case `typeTwo`:
-        update(this.gameContainer, new GameTwoView(question.data, onAnswer));
+        update(this.gameContainer, new GameTwoView(question.data, onAnswer, answers));
         break;
       case `typeThree`:
-        update(this.gameContainer, new GameThreeView(question.data, onAnswer));
+        update(this.gameContainer, new GameThreeView(question.data, onAnswer, answers));
         break;
     }
   }

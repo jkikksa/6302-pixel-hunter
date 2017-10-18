@@ -1,35 +1,13 @@
 import AbstractView from '../abstract-view';
-import footer from '../footer/footer';
+import StatsBarView from '../stats-bar/stats-bar-view';
+import footer from '../footer/footer-view';
 
 class StatsView extends AbstractView {
-  constructor(onBackButtonClicked, score, state) {
+  constructor(score, answers) {
     super();
     this.score = score;
-    this.state = state;
-    this.onBackButtonClicked = onBackButtonClicked;
-  }
-
-  getStatsBar() {
-    const statsBarTemplate = this.state.answers.map((it) => {
-      if (it.correctness === `correct`) {
-        switch (it.type) {
-          case `fast`:
-            return `<li class="stats__result stats__result--fast"></li>`;
-          case `slow`:
-            return `<li class="stats__result stats__result--slow"></li>`;
-          default:
-            return `<li class="stats__result stats__result--correct"></li>`;
-        }
-      } else {
-        return `<li class="stats__result stats__result--wrong"></li>`;
-      }
-    }).concat(new Array(10 - this.state.answers.length).fill(`<li class="stats__result stats__result--unknown"></li>`)).join(``);
-
-    return `
-    <ul class="stats">
-      ${statsBarTemplate};
-    </ul>
-  `;
+    this.answers = answers;
+    // this.onBackButtonClicked = onBackButtonClicked;
   }
 
   get template() {
@@ -48,7 +26,7 @@ class StatsView extends AbstractView {
     <tr>
       <td class="result__number">1.</td>
       <td colspan="2">
-        ${this.getStatsBar()}
+        ${(new StatsBarView(this.answers)).template}
       </td>
       <td class="result__points">×&nbsp;100</td>
       <td class="result__total">${this.score.answersScore}</td>
@@ -79,10 +57,19 @@ class StatsView extends AbstractView {
     </tr>
   </table>
 </div>
-${footer().template}`;
+${footer.template}`;
   }
 
   bind() {
+    const backButton = this.element.querySelector(`.back`);
+
+    backButton.addEventListener(`click`, () => {
+      this.onBackButtonClicked();
+    });
+  }
+
+  onBackButtonClicked() {
+
   }
 }
 

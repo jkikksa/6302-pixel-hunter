@@ -3,18 +3,18 @@ import RulesModel from './rules-model';
 import changeView from '../../router/change-view';
 import App from '../../application';
 
-
 class RulesScreen {
   constructor() {
     this.model = new RulesModel();
     this.view = new RulesView();
   }
 
-  init() {
+  init(state) {
     changeView(this.view);
+    this.model.updateState(state);
 
     this.view.onBackButtonClicked = () => {
-      console.log(`BACK CLICKED`);
+      App.showGreeting();
     };
 
     this.view.onNameFieldInput = (nameField, submitButton) => {

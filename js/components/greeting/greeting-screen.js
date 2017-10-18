@@ -8,10 +8,10 @@ class GreetingScreen {
     this.view = new GreetingView();
   }
 
-  init() {
+  init(state) {
     changeView(this.view);
     this.view.onNextButtonClick = () => {
-      App.showRules();
+      App.showRules(state);
     };
   }
 }

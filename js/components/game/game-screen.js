@@ -3,13 +3,16 @@ import GameModel from './game-model';
 import changeView from '../../router/change-view';
 import App from '../../application';
 
-
 class GameScreen {
   constructor() {
     this.model = new GameModel();
-    this.view = new GameView();
+    this.view = new GameView(() => {
+      App.showGreeting();
+    });
 
     this.onAnswer = (userAnswer) => {
+      this.stopTimer();
+
       switch (this.question.type) {
         case `typeOne`:
           const rightAnswers = this.model.getAnswer(this.question.id);
@@ -20,6 +23,7 @@ class GameScreen {
           if (!(isFirstAnswerRight && isSecondAnswerRight)) {
             this.model.decreaseLives();
           }
+          this.model.resetTime();
           App.showNextGame(this.model.state);
           return;
         case `typeTwo`:
@@ -30,6 +34,7 @@ class GameScreen {
           if (!isAnswerRight) {
             this.model.decreaseLives();
           }
+          this.model.resetTime();
           App.showNextGame(this.model.state);
           return;
         case `typeThree`:
@@ -40,6 +45,7 @@ class GameScreen {
           if (!isOptionRight) {
             this.model.decreaseLives();
           }
+          this.model.resetTime();
           App.showNextGame(this.model.state);
           return;
       }
@@ -51,10 +57,30 @@ class GameScreen {
     this.model.updateState(state);
     this.question = this.model.getQuestion();
     changeView(this.view);
-    this.view.updateHeader(this.model.timeLeft);
-    this.view.updateGame(this.question, this.onAnswer);
+    this.view.updateHeader(this.model.timeLeft, this.model.lives);
+    this.view.updateGame(this.question, this.onAnswer, this.model.answers);
+    this.tick();
   }
 
+  tick() {
+    if (this.model.timeLeft <= 0) {
+
+      this.model.addAnswer(false);
+      this.model.decreaseLives();
+      this.model.resetTime();
+      App.showNextGame(this.model.state);
+      return;
+    }
+
+    this.model.tick();
+    this.view.updateHeader(this.model.timeLeft, this.model.lives);
+
+    this.timer = setTimeout(() => this.tick(), 1000);
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
+  }
 }
 
 export default new GameScreen();

@@ -1,9 +1,4 @@
-import state from '../../data/state2';
-
 class RulesModel {
-  constructor() {
-    this.state = state;
-  }
 
   updateState(newState) {
     this.state = newState;

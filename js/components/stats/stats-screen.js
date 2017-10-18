@@ -1,0 +1,23 @@
+import StatsView from './stats-view';
+import StatsModel from './stats-model';
+import changeView from '../../router/change-view';
+import App from '../../application';
+
+class StatsScreen {
+  constructor() {
+    this.model = new StatsModel();
+  }
+
+  init(state) {
+    this.model.updateState(state);
+    this.view = new StatsView(this.model.score, this.model.answers);
+    changeView(this.view);
+
+    this.view.onBackButtonClicked = () => {
+      App.showGreeting();
+    };
+  }
+}
+
+export default new StatsScreen();
+

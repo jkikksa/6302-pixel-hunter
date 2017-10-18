@@ -1,10 +1,12 @@
 import AbstractView from '../abstract-view';
+import StatsBarView from '../stats-bar/stats-bar-view';
 
 class GameTwoView extends AbstractView {
-  constructor(data, onAnswer) {
+  constructor(data, onAnswer, answers) {
     super();
     this.data = data;
     this.onAnswer = onAnswer;
+    this.answers = answers;
   }
 
   get template() {
@@ -25,7 +27,7 @@ class GameTwoView extends AbstractView {
     </div>
   </form>
   <div class="stats">
-    {this.getStatsBar()}
+    ${(new StatsBarView(this.answers)).template}
   </div>
 </div>`;
   }
