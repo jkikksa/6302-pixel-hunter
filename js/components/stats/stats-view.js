@@ -7,7 +7,6 @@ class StatsView extends AbstractView {
     super();
     this.score = score;
     this.answers = answers;
-    // this.onBackButtonClicked = onBackButtonClicked;
   }
 
   get template() {

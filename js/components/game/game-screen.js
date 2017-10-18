@@ -53,7 +53,6 @@ class GameScreen {
   }
 
   init(state) {
-    console.log(state);
     this.model.updateState(state);
     this.question = this.model.getQuestion();
     changeView(this.view);

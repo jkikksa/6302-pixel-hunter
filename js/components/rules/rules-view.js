@@ -2,13 +2,6 @@ import AbstractView from '../abstract-view';
 import footer from '../footer/footer-view';
 
 class RulesView extends AbstractView {
-  // constructor(onBackButtonClicked, onNameFieldInput, onFormSubmit) {
-  //   super();
-  //   this.onBackButtonClicked = onBackButtonClicked;
-  //   this.onNameFieldInput = onNameFieldInput;
-  //   this.onFormSubmit = onFormSubmit;
-  // }
-
   get template() {
     return `\
 <header class="header">

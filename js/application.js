@@ -3,7 +3,7 @@ import greetingScreen from './components/greeting/greeting-screen';
 import rulesScreen from './components/rules/rules-screen';
 import gameScreen from './components/game/game-screen';
 import statsScreen from './components/stats/stats-screen';
-import initialState from './data/state2';
+import initialState from './data/state';
 
 export default class Application {
 
