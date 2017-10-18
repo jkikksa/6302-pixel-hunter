@@ -1,4 +1,6 @@
-import changeView from './router/change-view';
-import state from './data/state2';
+// import changeView from './router/change-view';
+// import state from './data/state2';
 
-changeView(`intro`, state);
+import App from './application';
+
+App.showIntro();

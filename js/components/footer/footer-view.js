@@ -17,4 +17,4 @@ class FooterView extends AbstractView {
   }
 }
 
-export default FooterView;
+export default new FooterView();
