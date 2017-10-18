@@ -3,7 +3,6 @@ import getQuestion from '../../data/get-question';
 import GameView from './game-view';
 import onBackButtonClicked from '../handlers/back-button-handler';
 import {onAnswerCheck} from './service';
-// import {state} from '../../data/state';
 import Timer from '../../data/timer';
 
 export default (state) => {
@@ -38,12 +37,19 @@ export default (state) => {
   };
 
   const game = new GameView({onAnswer, questionType, questionData, state, onBackButtonClicked});
+
   const startTimer = (oldState) => {
-    setTimeout(() => {
+    const tmr = setTimeout(() => {
       const timer = new Timer(oldState.timeLeft);
       const newState = oldState.setTime(oldState, timer.tick());
       game.updateTime(newState.timeLeft);
+      if (newState.timeLeft <= 0) {
+        clearTimeout(tmr);
+        // onAnswerCheck(false, newState);
+        return;
+      }
       startTimer(newState);
+      state = newState;
     }, 1000);
   };
 

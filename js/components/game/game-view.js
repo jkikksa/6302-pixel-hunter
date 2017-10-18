@@ -28,7 +28,14 @@ class GameView extends AbstractView {
   getStatsBar() {
     const statsBarTemplate = this.state.answers.map((it) => {
       if (it.correctness === `correct`) {
-        return `<li class="stats__result stats__result--correct"></li>`;
+        switch (it.type) {
+          case `fast`:
+            return `<li class="stats__result stats__result--fast"></li>`;
+          case `slow`:
+            return `<li class="stats__result stats__result--slow"></li>`;
+          default:
+            return `<li class="stats__result stats__result--correct"></li>`;
+        }
       } else {
         return `<li class="stats__result stats__result--wrong"></li>`;
       }

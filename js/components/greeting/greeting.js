@@ -1,7 +1,7 @@
 import GreetingView from './greeting-view';
 import changeView from '../../router/change-view';
 
-export default () => {
+export default (state) => {
 
   /**
    * Переключает на следующий экран
@@ -9,7 +9,7 @@ export default () => {
    */
   const onNextButtonClick = (evt) => {
     evt.preventDefault();
-    changeView(`rules`);
+    changeView(`rules`, state);
   };
 
   const greeting = new GreetingView(onNextButtonClick);

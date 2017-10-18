@@ -22,10 +22,10 @@ const LEVELS = {
  */
 const container = document.querySelector(`main.central`);
 
-/**
- * Показывает необходимый экран
- * @param {Element} view Экран
- */
+// /**
+//  * Показывает необходимый экран
+//  * @param {Element} view Экран
+//  */
 export default (view, state) => {
   container.innerHTML = ``;
   container.appendChild((LEVELS[view])(state).element);
