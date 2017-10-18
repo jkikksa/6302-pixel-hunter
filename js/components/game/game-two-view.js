@@ -40,7 +40,7 @@ class GameTwoView extends AbstractView {
       const answer = answers.find((it) => it.checked);
 
       if (isAnswerChecked) {
-        this.onAnswer({ answer });
+        this.onAnswer({answer});
       }
     });
   }

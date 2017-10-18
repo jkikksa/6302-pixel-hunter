@@ -35,7 +35,7 @@ class GameThreeView extends AbstractView {
     const options = form.querySelectorAll(`.game__option`);
     for (const option of options) {
       option.addEventListener(`click`, () => {
-        this.onAnswer({ option });
+        this.onAnswer({option});
       });
     }
   }
