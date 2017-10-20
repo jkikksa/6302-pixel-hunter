@@ -62,6 +62,11 @@ ${footer.template}`;
   onFormSubmit() {
 
   }
+
+  update() {
+    this._element = this.render();
+    this.bind();
+  }
 }
 
 export default RulesView;

@@ -7,6 +7,7 @@ class GameScreen {
   constructor() {
     this.model = new GameModel();
     this.view = new GameView(() => {
+      this.stopTimer();
       App.showGreeting();
     });
 
@@ -53,6 +54,7 @@ class GameScreen {
   }
 
   init(state) {
+    console.log(state);
     this.model.updateState(state);
     this.question = this.model.getQuestion();
     changeView(this.view);

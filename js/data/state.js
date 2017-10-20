@@ -2,8 +2,8 @@
  * @enum {string}
  */
 const AnswersMap = {
-  TRUE: `correct`,
-  FALSE: `incorrect`
+  true: `correct`,
+  false: `incorrect`
 };
 
 
@@ -49,10 +49,10 @@ state.setLives = (oldState, lives) => {
 
 state.addAnswer = (oldState, correctness) => {
   const newState = Object.assign({}, oldState);
-  newState.answers.push({
-    correctness: AnswersMap[correctness.toUpperCase()],
-    type: AnswersMap[correctness.toUpperCase()] === `correct` ? getType(oldState.timeLeft) : `normal`
-  });
+  newState.answers = [...newState.answers, {
+    correctness: AnswersMap[correctness],
+    type: AnswersMap[correctness] === `correct` ? getType(oldState.timeLeft) : `normal`
+  }];
   return newState;
 };
 

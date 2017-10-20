@@ -10,6 +10,8 @@ class RulesScreen {
   }
 
   init(state) {
+    console.log(state);
+
     changeView(this.view);
     this.model.updateState(state);
 
@@ -28,6 +30,8 @@ class RulesScreen {
       this.model.name = nameField.value;
       App.showGame(this.model.state);
     };
+
+    this.view.update();
   }
 }
 
