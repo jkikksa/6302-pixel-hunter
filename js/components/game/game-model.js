@@ -50,10 +50,19 @@ class GameModel {
     this.updateState(newState);
   }
 
-  tick() {
-    const timer = new Timer(this.timeLeft);
-    this.updateTime(timer.tick());
+  startTimer(onTick, onExpired) {
+    this.timer = new Timer(this.timeLeft);
+    this.timer.start(onTick, onExpired);
   }
+
+  stopTimer() {
+    this.timer.stop();
+  }
+
+  // tick() {
+  //   const timer = new Timer(this.timeLeft);
+  //   this.updateTime(timer.tick());
+  // }
 
   decreaseLives() {
     const newState = this.state.setLives(this.state, --this.state.lives);

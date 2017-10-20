@@ -6,13 +6,29 @@ import App from '../../application';
 class GameScreen {
   constructor() {
     this.model = new GameModel();
-    this.view = new GameView(() => {
-      this.stopTimer();
+
+    this.onBackButtonClicked = () => {
+      this.model.stopTimer();
       App.showGreeting();
-    });
+    };
+
+    this.view = new GameView(this.onBackButtonClicked);
+
+    this.onTick = (time) => {
+      console.log(time);
+      this.view.updateHeader(time, this.model.lives);
+    };
+
+    this.onExpired = () => {
+      console.log('expd');
+      this.model.addAnswer(false);
+      this.model.decreaseLives();
+      this.model.resetTime();
+      App.showNextGame(this.model.state);
+    };
 
     this.onAnswer = (userAnswer) => {
-      this.stopTimer();
+      this.model.stopTimer();
 
       switch (this.question.type) {
         case `typeOne`:
@@ -60,28 +76,32 @@ class GameScreen {
     changeView(this.view);
     this.view.updateHeader(this.model.timeLeft, this.model.lives);
     this.view.updateGame(this.question, this.onAnswer, this.model.answers);
-    this.tick();
+    this.model.startTimer(this.onTick, this.onExpired);
+
+    // this.tick();
   }
 
-  tick() {
-    if (this.model.timeLeft <= 0) {
 
-      this.model.addAnswer(false);
-      this.model.decreaseLives();
-      this.model.resetTime();
-      App.showNextGame(this.model.state);
-      return;
-    }
 
-    this.model.tick();
-    this.view.updateHeader(this.model.timeLeft, this.model.lives);
+  // tick() {
+  //   if (this.model.timeLeft <= 0) {
 
-    this.timer = setTimeout(() => this.tick(), 1000);
-  }
+  //     this.model.addAnswer(false);
+  //     this.model.decreaseLives();
+  //     this.model.resetTime();
+  //     App.showNextGame(this.model.state);
+  //     return;
+  //   }
 
-  stopTimer() {
-    clearTimeout(this.timer);
-  }
+  //   this.model.tick();
+  //   this.view.updateHeader(this.model.timeLeft, this.model.lives);
+
+  //   this.timer = setTimeout(() => this.tick(), 1000);
+  // }
+
+  // stopTimer() {
+  //   clearTimeout(this.timer);
+  // }
 }
 
 export default new GameScreen();
