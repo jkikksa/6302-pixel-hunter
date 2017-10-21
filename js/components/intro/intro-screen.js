@@ -11,6 +11,7 @@ class IntroScreen {
   init() {
     changeView(this.view);
     this.view.onNextButtonClick = () => {
+
       App.showGreeting();
     };
   }
