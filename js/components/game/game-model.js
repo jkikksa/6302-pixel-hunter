@@ -35,7 +35,10 @@ class GameModel {
 
   startTimer(onTick, onExpired) {
     this.timer = new Timer(this.timeLeft);
-    this.timer.start(onTick, onExpired);
+    this.timer.start((time) => {
+      this.updateTime(time);
+      onTick();
+    }, onExpired);
   }
 
   stopTimer() {

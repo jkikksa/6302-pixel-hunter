@@ -12,13 +12,11 @@ class GameTwoScreen {
       App.showGreeting();
     };
 
-    this.onTick = (time) => {
-      console.log(time);
-      this.view.updateHeader(time, this.model.lives);
+    this.onTick = () => {
+      this.view.updateHeader(this.model.timeLeft, this.model.lives);
     };
 
     this.onExpired = () => {
-      console.log('expd');
       this.model.addAnswer(false);
       this.model.decreaseLives();
       this.model.resetTime();
@@ -39,7 +37,6 @@ class GameTwoScreen {
   }
 
   init(state, question, rightAnswer) {
-    console.log(state);
     this.question = question;
     this.rightAnswer = rightAnswer;
     this.model.updateState(state);
