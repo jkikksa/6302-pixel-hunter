@@ -6,11 +6,13 @@ const AnswersMap = {
   false: `incorrect`
 };
 
+const FAST_TIME = 20;
+const SLOW_TIME = 10;
 
 const getType = (timeLeft) => {
-  if (30 - timeLeft < 10) {
+  if (timeLeft > FAST_TIME) {
     return `fast`;
-  } else if (30 - timeLeft > 20) {
+  } else if (timeLeft < SLOW_TIME) {
     return `slow`;
   }
   return `normal`;

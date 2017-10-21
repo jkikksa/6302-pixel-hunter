@@ -33,7 +33,6 @@ export default class Application {
 
   static showGame(state) {
     const gameData = getData();
-    console.log(gameData);
     switch (gameData.question.type) {
       case `typeOne`:
         gameOneScreen.init(state, gameData.question.data, gameData.answer.data);

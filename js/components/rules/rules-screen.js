@@ -10,8 +10,6 @@ class RulesScreen {
   }
 
   init(state) {
-    console.log(state);
-
     changeView(this.view);
     this.model.updateState(state);
 
