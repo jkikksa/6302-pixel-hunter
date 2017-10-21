@@ -1,16 +1,25 @@
 import AbstractView from '../abstract-view';
 import StatsBarView from '../stats-bar/stats-bar-view';
+import HeaderView from '../header/header-view';
+import footer from '../footer/footer-view';
+
+const update = (container, view) => {
+  container.innerHTML = ``;
+  container.appendChild(view.element);
+};
 
 class GameTwoView extends AbstractView {
-  constructor(data, onAnswer, answers) {
+  constructor(data, onAnswer, answers, onBackButtonClicked) {
     super();
     this.data = data;
     this.onAnswer = onAnswer;
+    this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;
   }
 
   get template() {
     return `\
+<div class="header-container"></div>
 <div class="game">
   <p class="game__task">Угадай, фото или рисунок?</p>
   <form class="game__content  game__content--wide">
@@ -29,10 +38,16 @@ class GameTwoView extends AbstractView {
   <div class="stats">
     ${(new StatsBarView(this.answers)).template}
   </div>
-</div>`;
+</div>
+${footer.template}`;
+  }
+
+  updateHeader(timeleft, lives) {
+    update(this.headerContainer, new HeaderView(timeleft, lives, this.onBackButtonClicked));
   }
 
   bind() {
+    this.headerContainer = this.element.querySelector(`.header-container`);
     const form = this.element.querySelector(`.game__content`);
     const answers = Array.from(form.querySelectorAll(`input[name="question1"]`));
     form.addEventListener(`change`, () => {
@@ -40,7 +55,7 @@ class GameTwoView extends AbstractView {
       const answer = answers.find((it) => it.checked);
 
       if (isAnswerChecked) {
-        this.onAnswer({answer});
+        this.onAnswer(answer);
       }
     });
   }

@@ -1,5 +1,5 @@
 import GreetingView from './greeting-view';
-import changeView from '../../router/change-view';
+import {changeView} from '../../utils';
 import App from '../../application';
 
 

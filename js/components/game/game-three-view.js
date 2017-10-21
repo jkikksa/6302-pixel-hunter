@@ -1,16 +1,25 @@
 import AbstractView from '../abstract-view';
 import StatsBarView from '../stats-bar/stats-bar-view';
+import HeaderView from '../header/header-view';
+import footer from '../footer/footer-view';
+
+const update = (container, view) => {
+  container.innerHTML = ``;
+  container.appendChild(view.element);
+};
 
 class GameThreeView extends AbstractView {
-  constructor(data, onAnswer, answers) {
+  constructor(data, onAnswer, answers, onBackButtonClicked) {
     super();
     this.data = data;
     this.onAnswer = onAnswer;
+    this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;
   }
 
   get template() {
     return `\
+<div class="header-container"></div>
 <div class="game">
   <p class="game__task">Найдите рисунок среди изображений</p>
   <form class="game__content  game__content--triple">
@@ -27,15 +36,21 @@ class GameThreeView extends AbstractView {
   <div class="stats">
     ${(new StatsBarView(this.answers)).template}
   </div>
-</div>`;
+</div>
+${footer.template}`;
+  }
+
+  updateHeader(timeleft, lives) {
+    update(this.headerContainer, new HeaderView(timeleft, lives, this.onBackButtonClicked));
   }
 
   bind() {
+    this.headerContainer = this.element.querySelector(`.header-container`);
     const form = this.element.querySelector(`.game__content`);
     const options = form.querySelectorAll(`.game__option`);
     for (const option of options) {
       option.addEventListener(`click`, () => {
-        this.onAnswer({option});
+        this.onAnswer(option);
       });
     }
   }

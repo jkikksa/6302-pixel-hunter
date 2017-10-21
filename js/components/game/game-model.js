@@ -1,23 +1,6 @@
 import Timer from '../../data/timer';
 
-/**
- * Возвращает случайное целое число.
- * @param {number} min
- * @param {number} max
- * @return {number}
- */
-const getRandomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min)) + min;
-};
-
-import questions from './data/questions';
-import answersList from './data/answers';
-
 class GameModel {
-  constructor() {
-    this.questions = questions;
-    this.answersList = answersList;
-  }
 
   get timeLeft() {
     return this.state.timeLeft;
@@ -59,32 +42,12 @@ class GameModel {
     this.timer.stop();
   }
 
-  // tick() {
-  //   const timer = new Timer(this.timeLeft);
-  //   this.updateTime(timer.tick());
-  // }
-
   decreaseLives() {
     const newState = this.state.setLives(this.state, --this.state.lives);
     this.updateState(newState);
   }
 
-  /**
- * Возвращает случайный объект вопроса.
- * @return {Object}
- */
-  getQuestion() {
-    return this.questions[getRandomInt(0, this.questions.length)];
-  }
 
-  /**
-   * Возвращает объект ответа с нужным id
-   * @param {number} id
-   * @return {Object}
-   */
-  getAnswer(id) {
-    return this.answersList.find((it) => it.id === id);
-  }
 }
 
 export default GameModel;

@@ -1,6 +1,6 @@
 import StatsView from './stats-view';
 import StatsModel from './stats-model';
-import changeView from '../../router/change-view';
+import {changeView} from '../../utils';
 import App from '../../application';
 
 class StatsScreen {

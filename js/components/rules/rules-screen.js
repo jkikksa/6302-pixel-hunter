@@ -1,6 +1,6 @@
 import RulesView from './rules-view';
 import RulesModel from './rules-model';
-import changeView from '../../router/change-view';
+import {changeView} from '../../utils';
 import App from '../../application';
 
 class RulesScreen {
