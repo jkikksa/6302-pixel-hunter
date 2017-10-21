@@ -6,7 +6,7 @@
 class Timer {
   constructor(time) {
     this.time = time < 0 ? 0 : time;
-    this.isExpired = this.time === 0;
+    this.isExpired = this.time < 0;
   }
 
   /**
@@ -19,11 +19,28 @@ class Timer {
       return `Таймер закончен`;
     }
     this.time--;
-    if (this.time === 0) {
+    if (this.time <= 0) {
       this.isExpired = true;
       return `Таймер закончен`;
     }
     return this.time;
+  }
+
+  start(onTick, onExpired) {
+    this.timer = setTimeout(() => {
+      if (this.isExpired) {
+        this.stop();
+        onExpired();
+        return;
+      }
+      this.tick();
+      onTick(this.time);
+      this.start(onTick, onExpired);
+    }, 1000);
+  }
+
+  stop() {
+    clearTimeout(this.timer);
   }
 }
 

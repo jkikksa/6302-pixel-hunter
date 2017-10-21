@@ -2,7 +2,7 @@ import AbstractView from '../abstract-view';
 
 class FooterView extends AbstractView {
 
-  getTemplate() {
+  get template() {
     return `\
 <footer class="footer">
   <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
@@ -17,4 +17,4 @@ class FooterView extends AbstractView {
   }
 }
 
-export default FooterView;
+export default new FooterView();

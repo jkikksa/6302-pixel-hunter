@@ -1,13 +1,8 @@
 import AbstractView from '../abstract-view';
-import footer from '../footer/footer';
+import footer from '../footer/footer-view';
 
 class GreetingView extends AbstractView {
-  constructor(cb) {
-    super();
-    this.onNextButtonClick = cb;
-  }
-
-  getTemplate() {
+  get template() {
     return `\
 <div class="greeting central--blur">
   <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
@@ -22,14 +17,20 @@ class GreetingView extends AbstractView {
   </div>
   <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
 </div>
-${footer().getTemplate()}`;
+${footer.template}`;
   }
 
   bind() {
-    const greeting = this.getElement();
+    const greeting = this.element;
     const nextButton = greeting.querySelector(`.greeting__continue`);
 
-    nextButton.addEventListener(`click`, this.onNextButtonClick);
+    nextButton.addEventListener(`click`, () => {
+      this.onNextButtonClick();
+    });
+  }
+
+  onNextButtonClick() {
+
   }
 }
 

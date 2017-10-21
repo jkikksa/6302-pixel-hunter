@@ -8,3 +8,18 @@ export const createElement = (template) => {
   element.innerHTML = template;
   return element;
 };
+
+/**
+ * Блок, в котором показываются экраны
+ * @type {Element}
+ */
+const container = document.querySelector(`main.central`);
+
+/**
+ * Показывает необходимый экран
+ * @param {Object} view Экран
+ */
+export const changeView = (view) => {
+  container.innerHTML = ``;
+  container.appendChild(view.element);
+};

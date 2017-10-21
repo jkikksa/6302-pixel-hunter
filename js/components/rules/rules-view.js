@@ -1,15 +1,8 @@
 import AbstractView from '../abstract-view';
-import footer from '../footer/footer';
+import footer from '../footer/footer-view';
 
 class RulesView extends AbstractView {
-  constructor(onBackButtonClicked, onNameFieldInput, onFormSubmit) {
-    super();
-    this.onBackButtonClicked = onBackButtonClicked;
-    this.onNameFieldInput = onNameFieldInput;
-    this.onFormSubmit = onFormSubmit;
-  }
-
-  getTemplate() {
+  get template() {
     return `\
 <header class="header">
   <div class="header__back">
@@ -35,18 +28,18 @@ class RulesView extends AbstractView {
     <button class="rules__button  continue" type="submit" disabled>Go!</button>
   </form>
 </div>
-${footer().getTemplate()}`;
+${footer.template}`;
   }
 
   bind() {
-    const rules = this.getElement();
+    const rules = this.element;
     const form = rules.querySelector(`.rules__form`);
     const nameField = form.querySelector(`.rules__input`);
     const submitButton = form.querySelector(`.rules__button.continue`);
     const backButton = rules.querySelector(`.back`);
 
-    backButton.addEventListener(`click`, (evt) => {
-      this.onBackButtonClicked(evt);
+    backButton.addEventListener(`click`, () => {
+      this.onBackButtonClicked();
     });
 
     nameField.addEventListener(`input`, () => {
@@ -56,6 +49,23 @@ ${footer().getTemplate()}`;
     form.addEventListener(`submit`, (evt) => {
       this.onFormSubmit(evt, nameField);
     });
+  }
+
+  onBackButtonClicked() {
+
+  }
+
+  onNameFieldInput() {
+
+  }
+
+  onFormSubmit() {
+
+  }
+
+  update() {
+    this._element = this.render();
+    this.bind();
   }
 }
 

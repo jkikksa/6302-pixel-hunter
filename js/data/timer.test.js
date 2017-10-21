@@ -23,7 +23,7 @@ describe(`Функция создания таймера`, () => {
   it(`Установлено время равное 10`, () => {
     const newTimer = new Timer(10);
     let n = 9;
-    while (n > 0) {
+    while (n >= 0) {
       newTimer.tick();
       n--;
     }

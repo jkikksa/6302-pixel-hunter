@@ -1,3 +1,3 @@
-import changeView from './router/change-view';
+import App from './application';
 
-changeView(`intro`);
+App.showIntro();

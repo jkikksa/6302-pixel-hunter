@@ -1,19 +1,19 @@
 import {createElement} from '../utils';
 
 class AbstractView {
-  getTemplate() {
-    throw new Error(`You have to define template for view`);
+  get template() {
+    return `empty`;
   }
 
   render() {
-    return createElement(this.getTemplate());
+    return createElement(this.template);
   }
 
   bind() {
 
   }
 
-  getElement() {
+  get element() {
     if (!this._element) {
       this._element = this.render();
       this.bind();

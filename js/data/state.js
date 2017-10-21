@@ -2,42 +2,61 @@
  * @enum {string}
  */
 const AnswersMap = {
-  TRUE: `correct`,
-  FALSE: `incorrect`
+  true: `correct`,
+  false: `incorrect`
 };
 
-export class InitialState {
-  constructor() {
-    this.lives = 3;
-    this.currentScreen = ``;
-    this.timeLeft = 90;
-    this.playerName = ``;
-    this.answers = [];
-  }
+const FAST_TIME = 20;
+const SLOW_TIME = 10;
 
-  /**
-   * Сохраняет имя пользователя
-   * @param {string} name
-   */
-  setName(name) {
-    this.playerName = name;
+const getType = (timeLeft) => {
+  if (timeLeft > FAST_TIME) {
+    return `fast`;
+  } else if (timeLeft < SLOW_TIME) {
+    return `slow`;
   }
+  return `normal`;
+};
 
-  /**
-   * Добавляет ответ
-   * @param {string} correctness
-   * @param {string} type
-   */
-  addAnswer(correctness, type) {
-    this.answers.push({
-      correctness: AnswersMap[correctness.toUpperCase()],
-      type
-    });
-  }
+const state = {
+  lives: 3,
+  timeLeft: 30,
+  playerName: ``,
+  answers: []
+};
 
-  decreaseLives() {
-    this.lives--;
-  }
-}
+state.setName = (oldState, name) => {
+  const newState = Object.assign({}, oldState);
+  newState.playerName = name;
+  return newState;
+};
 
-export const state = new InitialState();
+state.setTime = (oldState, time) => {
+  const newState = Object.assign({}, oldState);
+  newState.timeLeft = time;
+  return newState;
+};
+
+state.resetTime = (oldState) => {
+  const newState = Object.assign({}, oldState);
+  newState.timeLeft = 30;
+  return newState;
+};
+
+state.setLives = (oldState, lives) => {
+  const newState = Object.assign({}, oldState);
+  newState.lives = lives;
+  return newState;
+};
+
+state.addAnswer = (oldState, correctness) => {
+  const newState = Object.assign({}, oldState);
+  newState.answers = [...newState.answers, {
+    correctness: AnswersMap[correctness],
+    type: AnswersMap[correctness] === `correct` ? getType(oldState.timeLeft) : `normal`
+  }];
+  return newState;
+};
+
+export default state;
+
