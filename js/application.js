@@ -8,7 +8,6 @@ import statsScreen from './components/stats/stats-screen';
 import {State as initialState} from './data/state';
 import getQuestion from './data/get-question';
 import getAnswer from './data/get-answer';
-import {encode, decode} from './data/encode';
 
 const getData = () => {
   const question = getQuestion();
