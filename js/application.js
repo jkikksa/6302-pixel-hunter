@@ -66,14 +66,7 @@ export default class Application {
     const controller = routes[id];
 
     if (controller) {
-      switch (controller) {
-        case statsScreen:
-          controller.init(decode(data));
-          break;
-        default:
-          controller.init(loadState(data));
-          break;
-      }
+      controller.init(loadState(data));
     }
   }
 
@@ -106,7 +99,7 @@ export default class Application {
 
   static showStats(state) {
     delete state.gameData;
-    location.hash = `${ControllerId.STATS}?${encode(state)}`;
+    location.hash = `${ControllerId.STATS}?${saveState(state)}`;
   }
 
   static showNextGame(state) {
