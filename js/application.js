@@ -5,10 +5,10 @@ import gameOneScreen from './components/game/game-one-screen';
 import gameTwoScreen from './components/game/game-two-screen';
 import gameThreeScreen from './components/game/game-three-screen';
 import statsScreen from './components/stats/stats-screen';
-import initialState from './data/state';
+import {state as initialState} from './data/state';
 import getQuestion from './data/get-question';
 import getAnswer from './data/get-answer';
-
+import {encode, decode} from './data/encode';
 
 const getData = () => {
   const question = getQuestion();
@@ -17,37 +17,96 @@ const getData = () => {
   return {question, answer};
 };
 
+const ControllerId = {
+  INTRO: ``,
+  GREETING: `greeting`,
+  RULES: `rules`,
+  GAME_ONE: `gameOne`,
+  GAME_TWO: `gameTwo`,
+  GAME_THREE: `gameThree`,
+  STATS: `stats`
+};
+
+const saveState = (state) => {
+  return JSON.stringify(state);
+};
+
+const loadState = (dataString) => {
+
+  try {
+    return JSON.parse(dataString);
+  } catch (e) {
+    return initialState;
+  }
+};
+
+const routes = {
+  [ControllerId.INTRO]: introScreen,
+  [ControllerId.GREETING]: greetingScreen,
+  [ControllerId.RULES]: rulesScreen,
+  [ControllerId.GAME_ONE]: gameOneScreen,
+  [ControllerId.GAME_TWO]: gameTwoScreen,
+  [ControllerId.GAME_THREE]: gameThreeScreen,
+  [ControllerId.STATS]: statsScreen
+};
+
 export default class Application {
 
+  static init() {
+    const hashChangeHandler = () => {
+      const hashValue = location.hash.replace(`#`, ``);
+      const [id, data] = hashValue.split(`?`);
+      this.changeHash(id, data);
+    };
+    window.onhashchange = hashChangeHandler;
+    hashChangeHandler();
+  }
+
+  static changeHash(id, data) {
+    const controller = routes[id];
+
+    if (controller) {
+      switch (controller) {
+        case statsScreen:
+          controller.init(decode(data));
+          break;
+        default:
+          controller.init(loadState(data));
+          break;
+      }
+    }
+  }
+
   static showIntro() {
-    introScreen.init();
+    location.hash = ControllerId.INTRO;
   }
 
   static showGreeting(state = initialState) {
-    greetingScreen.init(state);
+    location.hash = `${ControllerId.GREETING}?${saveState(state)}`;
   }
 
   static showRules(state) {
-    rulesScreen.init(state);
+    location.hash = `${ControllerId.RULES}?${saveState(state)}`;
   }
 
   static showGame(state) {
-    const gameData = getData();
-    switch (gameData.question.type) {
+    state.gameData = getData();
+    switch (state.gameData.question.type) {
       case `typeOne`:
-        gameOneScreen.init(state, gameData.question.data, gameData.answer.data);
+        location.hash = `${ControllerId.GAME_ONE}?${saveState(state)}`;
         break;
       case `typeTwo`:
-        gameTwoScreen.init(state, gameData.question.data, gameData.answer.data);
+        location.hash = `${ControllerId.GAME_TWO}?${saveState(state)}`;
         break;
       case `typeThree`:
-        gameThreeScreen.init(state, gameData.question.data, gameData.answer.data);
+        location.hash = `${ControllerId.GAME_THREE}?${saveState(state)}`;
         break;
     }
   }
 
   static showStats(state) {
-    statsScreen.init(state);
+    delete state.gameData;
+    location.hash = `${ControllerId.STATS}?${encode(state)}`;
   }
 
   static showNextGame(state) {
@@ -58,3 +117,5 @@ export default class Application {
     }
   }
 }
+
+Application.init();

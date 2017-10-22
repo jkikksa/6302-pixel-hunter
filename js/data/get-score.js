@@ -31,8 +31,8 @@ const getScore = (answers, remainingLives) => {
   }
   score = answers.reduce((acc, it) => {
     acc.answersScore += Scores[it.correctness.toUpperCase()];
-    acc.bonusCount += it.type.toUpperCase() === `FAST` ? 1 : 0;
-    acc.penaltyCount += it.type.toUpperCase() === `SLOW` ? 1 : 0;
+    acc.bonusCount += it.type === `fast` ? 1 : 0;
+    acc.penaltyCount += it.type === `slow` ? 1 : 0;
     return acc;
   }, {
     answersScore: 0,
@@ -40,8 +40,8 @@ const getScore = (answers, remainingLives) => {
     penaltyCount: 0
   });
 
-  score.bonusScore = score.bonusCount * Scores[`FAST`];
-  score.penaltyScore = score.penaltyCount * Scores[`SLOW`];
+  score.bonusScore = score.bonusCount * Scores.FAST;
+  score.penaltyScore = score.penaltyCount * Scores.SLOW;
   score.livesCount = remainingLives;
   score.livesScore = score.livesCount * REMAINING_LIFE_SCORE;
   score.totalScore = score.answersScore + score.bonusScore + score.penaltyScore + score.livesScore;

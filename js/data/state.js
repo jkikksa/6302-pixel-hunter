@@ -18,38 +18,38 @@ const getType = (timeLeft) => {
   return `normal`;
 };
 
-const state = {
+export const state = {
   lives: 3,
   timeLeft: 30,
   playerName: ``,
   answers: []
 };
 
-state.setName = (oldState, name) => {
+export const setName = (oldState, name) => {
   const newState = Object.assign({}, oldState);
   newState.playerName = name;
   return newState;
 };
 
-state.setTime = (oldState, time) => {
+export const setTime = (oldState, time) => {
   const newState = Object.assign({}, oldState);
   newState.timeLeft = time;
   return newState;
 };
 
-state.resetTime = (oldState) => {
+export const resetTime = (oldState) => {
   const newState = Object.assign({}, oldState);
   newState.timeLeft = 30;
   return newState;
 };
 
-state.setLives = (oldState, lives) => {
+export const setLives = (oldState, lives) => {
   const newState = Object.assign({}, oldState);
   newState.lives = lives;
   return newState;
 };
 
-state.addAnswer = (oldState, correctness) => {
+export const addAnswer = (oldState, correctness) => {
   const newState = Object.assign({}, oldState);
   newState.answers = [...newState.answers, {
     correctness: AnswersMap[correctness],
@@ -57,6 +57,4 @@ state.addAnswer = (oldState, correctness) => {
   }];
   return newState;
 };
-
-export default state;
 

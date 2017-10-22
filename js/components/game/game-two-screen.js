@@ -36,9 +36,9 @@ class GameTwoScreen {
     };
   }
 
-  init(state, question, rightAnswer) {
-    this.question = question;
-    this.rightAnswer = rightAnswer;
+  init(state) {
+    this.question = state.gameData.question.data;
+    this.rightAnswer = state.gameData.answer.data;
     this.model.updateState(state);
     this.view = new GameTwoView(this.question, this.onAnswer, this.model.answers, this.onBackButtonClicked);
     changeView(this.view);

@@ -1,4 +1,5 @@
 import Timer from '../../data/timer';
+import {setTime, resetTime, setLives, addAnswer} from '../../data/state';
 
 class GameModel {
 
@@ -19,17 +20,17 @@ class GameModel {
   }
 
   addAnswer(correctness) {
-    const newState = this.state.addAnswer(this.state, `${correctness}`);
+    const newState = addAnswer(this.state, `${correctness}`);
     this.updateState(newState);
   }
 
   updateTime(newTime) {
-    const newState = this.state.setTime(this.state, newTime);
+    const newState = setTime(this.state, newTime);
     this.updateState(newState);
   }
 
   resetTime() {
-    const newState = this.state.resetTime(this.state);
+    const newState = resetTime(this.state);
     this.updateState(newState);
   }
 
@@ -46,11 +47,9 @@ class GameModel {
   }
 
   decreaseLives() {
-    const newState = this.state.setLives(this.state, --this.state.lives);
+    const newState = setLives(this.state, --this.state.lives);
     this.updateState(newState);
   }
-
-
 }
 
 export default GameModel;
