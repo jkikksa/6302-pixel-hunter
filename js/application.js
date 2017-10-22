@@ -5,7 +5,7 @@ import gameOneScreen from './components/game/game-one-screen';
 import gameTwoScreen from './components/game/game-two-screen';
 import gameThreeScreen from './components/game/game-three-screen';
 import statsScreen from './components/stats/stats-screen';
-import {state as initialState} from './data/state';
+import {State as initialState} from './data/state';
 import getQuestion from './data/get-question';
 import getAnswer from './data/get-answer';
 import {encode, decode} from './data/encode';

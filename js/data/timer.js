@@ -26,6 +26,11 @@ class Timer {
     return this.time;
   }
 
+  /**
+   * Запускает таймер.
+   * @param {Function} onTick Callback. Вызывает каждый тик.
+   * @param {Function} onExpired Callback. Вызывает после окончания таймера.
+   */
   start(onTick, onExpired) {
     this.timer = setTimeout(() => {
       if (this.isExpired) {
@@ -39,6 +44,9 @@ class Timer {
     }, 1000);
   }
 
+  /**
+   * Останавливает таймер
+   */
   stop() {
     clearTimeout(this.timer);
   }
