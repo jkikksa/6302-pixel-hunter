@@ -52,13 +52,13 @@ const routes = {
 export default class Application {
 
   static init() {
-    const hashChangeHandler = () => {
+    const onHashChange = () => {
       const hashValue = location.hash.replace(`#`, ``);
       const [id, data] = hashValue.split(`?`);
       this.changeHash(id, data);
     };
-    window.onhashchange = hashChangeHandler;
-    hashChangeHandler();
+    window.addEventListener(`hashchange`, onHashChange);
+    onHashChange();
   }
 
   static changeHash(id, data) {
@@ -109,5 +109,3 @@ export default class Application {
     }
   }
 }
-
-Application.init();
