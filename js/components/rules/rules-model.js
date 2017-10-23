@@ -1,3 +1,5 @@
+import {setName} from '../../data/state';
+
 class RulesModel {
 
   updateState(newState) {
@@ -5,7 +7,7 @@ class RulesModel {
   }
 
   set name(name) {
-    const newState = this.state.setName(this.state, name);
+    const newState = setName(this.state, name);
     this.updateState(newState);
   }
 }
