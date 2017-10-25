@@ -9,12 +9,13 @@ const update = (container, view) => {
 };
 
 class GameOneView extends AbstractView {
-  constructor(data, onAnswer, answers, onBackButtonClicked) {
+  constructor(imageOne, imageTwo, onAnswer, answers, onBackButtonClicked) {
     super();
-    this.data = data;
+    this.imageOne = imageOne;
+    this.imageTwo = imageTwo;
     this.onAnswer = onAnswer;
-    this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;
+    this.onBackButtonClicked = onBackButtonClicked;
   }
 
   get template() {
@@ -24,24 +25,24 @@ class GameOneView extends AbstractView {
   <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
   <form class="game__content">
     <div class="game__option">
-      <img src="${this.data.question1}" alt="Option 1" width="468" height="458">
+      <img src="${this.imageOne.url}" alt="Option 1" width="${this.imageOne.width}" height="${this.imageOne.height}">
       <label class="game__answer game__answer--photo">
         <input name="question1" type="radio" value="photo">
         <span>Фото</span>
       </label>
       <label class="game__answer game__answer--paint">
-        <input name="question1" type="radio" value="paint">
+        <input name="question1" type="radio" value="painting">
         <span>Рисунок</span>
       </label>
     </div>
     <div class="game__option">
-      <img src="${this.data.question2}" alt="Option 2" width="468" height="458">
+      <img src="${this.imageTwo.url}" alt="Option 2" width="${this.imageTwo.width}" height="${this.imageTwo.height}">
       <label class="game__answer  game__answer--photo">
         <input name="question2" type="radio" value="photo">
         <span>Фото</span>
       </label>
       <label class="game__answer  game__answer--paint">
-        <input name="question2" type="radio" value="paint">
+        <input name="question2" type="radio" value="painting">
         <span>Рисунок</span>
       </label>
     </div>

@@ -9,11 +9,35 @@ import {State as initialState} from './data/state';
 import getQuestion from './data/get-question';
 import getAnswer from './data/get-answer';
 
+
+import testData from './test';
+
+import Loader from './loader';
+
 const getData = () => {
   const question = getQuestion();
   const answer = getAnswer(question.id);
 
   return {question, answer};
+};
+
+const getImagesURL = (data) => {
+  return data.reduce((acc, it) => {
+    return acc.concat(it.answers.map((answer) => answer.image.url));
+  }, []);
+};
+
+const loadImage = (url) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.addEventListener(`load`, () => {
+      return resolve(img);
+    });
+    img.addEventListener(`error`, () => {
+      return reject(`Ошибка загрузки`);
+    });
+    img.src = url;
+  });
 };
 
 const ControllerId = {
@@ -49,9 +73,19 @@ const routes = {
   [ControllerId.STATS]: statsScreen
 };
 
+const newRoutes = {
+  INTRO: introScreen,
+  GREETING: greetingScreen,
+  RULES: rulesScreen,
+  GAME_ONE: gameOneScreen,
+  GAME_TWO: gameTwoScreen,
+  GAME_THREE: gameThreeScreen,
+  STATS: statsScreen
+};
+
 export default class Application {
 
-  static init() {
+  static start() {
     const onHashChange = () => {
       const hashValue = location.hash.replace(`#`, ``);
       const [id, data] = hashValue.split(`?`);
@@ -70,42 +104,62 @@ export default class Application {
   }
 
   static showIntro() {
-    location.hash = ControllerId.INTRO;
+    // location.hash = ControllerId.INTRO;
+    newRoutes[`INTRO`].init();
   }
 
   static showGreeting(state = initialState) {
-    location.hash = `${ControllerId.GREETING}?${saveState(state)}`;
+    newRoutes[`GREETING`].init(state);
+    // location.hash = `${ControllerId.GREETING}?${saveState(state)}`;
   }
 
   static showRules(state) {
-    location.hash = `${ControllerId.RULES}?${saveState(state)}`;
+    newRoutes[`RULES`].init(state);
+    // location.hash = `${ControllerId.RULES}?${saveState(state)}`;
   }
 
-  static showGame(state) {
-    state.gameData = getData();
-    switch (state.gameData.question.type) {
-      case `typeOne`:
-        location.hash = `${ControllerId.GAME_ONE}?${saveState(state)}`;
+  static showGame(state, data) {
+    switch (data.type) {
+      case `two-of-two`:
+        newRoutes[`GAME_ONE`].init(state, data.answers);
         break;
-      case `typeTwo`:
-        location.hash = `${ControllerId.GAME_TWO}?${saveState(state)}`;
+      case `tinder-like`:
+        newRoutes[`GAME_TWO`].init(state, data.answers);
         break;
-      case `typeThree`:
-        location.hash = `${ControllerId.GAME_THREE}?${saveState(state)}`;
+      case `one-of-three`:
+        newRoutes[`GAME_THREE`].init(state, data.answers);
         break;
     }
   }
 
   static showStats(state) {
-    delete state.gameData;
     location.hash = `${ControllerId.STATS}?${saveState(state)}`;
   }
 
   static showNextGame(state) {
+
     if (state.answers.length >= 10 || state.lives <= 0) {
       this.showStats(state);
     } else {
-      this.showGame(state);
+      this.showGame(state, this.data[0]);
     }
   }
+
+  static async init() {
+    this.showIntro();
+    // this.data = await Loader.getData();
+    this.data = testData;
+    // console.log(this.data);
+    // const imagesURL = getImagesURL(this.data);
+
+
+    // for (const url of imagesURL) {
+    //   await loadImage(url);
+    // }
+    this.showGreeting();
+    this.start();
+
+    // console.log(imagesURL);
+  }
 }
+

@@ -86,7 +86,6 @@ export const setLives = (oldState, lives) => {
   return newState;
 };
 
-
 /**
  * Добавляет ответ
  * @param {State} oldState

@@ -35,14 +35,15 @@ class GameThreeScreen {
     };
   }
 
-  init(state) {
-    this.question = state.gameData.question.data;
-    this.rightAnswer = state.gameData.answer.data;
-    this.model.updateState(state);
-    this.view = new GameThreeView(this.question, this.onAnswer, this.model.answers, this.onBackButtonClicked);
-    changeView(this.view);
-    this.view.updateHeader(this.model.timeLeft, this.model.lives);
-    this.model.startTimer(this.onTick, this.onExpired);
+  init(state, data) {
+    console.log(data);
+    // this.question = state.gameData.question.data;
+    // this.rightAnswer = state.gameData.answer.data;
+    // this.model.updateState(state);
+    // this.view = new GameThreeView(this.question, this.onAnswer, this.model.answers, this.onBackButtonClicked);
+    // changeView(this.view);
+    // this.view.updateHeader(this.model.timeLeft, this.model.lives);
+    // this.model.startTimer(this.onTick, this.onExpired);
   }
 }
 
