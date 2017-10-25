@@ -12,7 +12,6 @@ class GameThreeView extends AbstractView {
   constructor(data, onAnswer, answers, onBackButtonClicked) {
     super();
     this.data = data;
-    console.log(this.data);
     this.onAnswer = onAnswer;
     this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;

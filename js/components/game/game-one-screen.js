@@ -38,8 +38,6 @@ class GameOneScreen {
   }
 
   init(state, data) {
-    // console.log(data);
-    // this.question = state.gameData.question.data;
     [{type: this.firstRightAnswer, image: this.imageOne}, {type: this.secondRightAnswer, image: this.imageTwo}] = data.answers;
 
     this.model.updateState(state);
