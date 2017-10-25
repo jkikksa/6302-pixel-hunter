@@ -26,7 +26,7 @@ class GameTwoScreen {
     this.onAnswer = (userAnswer) => {
       this.model.stopTimer();
 
-      const isAnswerRight = userAnswer.value === this.rightAnswer.question1;
+      const isAnswerRight = userAnswer.value === this.rightAnswer;
       this.model.addAnswer(isAnswerRight);
       if (!isAnswerRight) {
         this.model.decreaseLives();
@@ -37,14 +37,12 @@ class GameTwoScreen {
   }
 
   init(state, data) {
-    console.log(data);
-    // this.question = state.gameData.question.data;
-    // this.rightAnswer = state.gameData.answer.data;
-    // this.model.updateState(state);
-    // this.view = new GameTwoView(this.question, this.onAnswer, this.model.answers, this.onBackButtonClicked);
-    // changeView(this.view);
-    // this.view.updateHeader(this.model.timeLeft, this.model.lives);
-    // this.model.startTimer(this.onTick, this.onExpired);
+    [{type: this.rightAnswer, image: this.image}] = data.answers;
+    this.model.updateState(state);
+    this.view = new GameTwoView(this.image, this.onAnswer, this.model.answers, this.onBackButtonClicked);
+    changeView(this.view);
+    this.view.updateHeader(this.model.timeLeft, this.model.lives);
+    this.model.startTimer(this.onTick, this.onExpired);
   }
 }
 

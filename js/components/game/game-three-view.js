@@ -12,25 +12,27 @@ class GameThreeView extends AbstractView {
   constructor(data, onAnswer, answers, onBackButtonClicked) {
     super();
     this.data = data;
+    console.log(this.data);
     this.onAnswer = onAnswer;
     this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;
+    [{image: this.imageOne}, {image: this.imageTwo}, {image: this.imageThree}] = this.data.answers;
   }
 
   get template() {
     return `\
 <div class="header-container"></div>
 <div class="game">
-  <p class="game__task">Найдите рисунок среди изображений</p>
+  <p class="game__task">${this.data.question}</p>
   <form class="game__content  game__content--triple">
-    <div class="game__option" data-option="question1">
-      <img src="${this.data.question1}" alt="Option 1" width="304" height="455">
+    <div class="game__option" data-option="0">
+      <img src="${this.imageOne.url}" alt="Option 1" width="304" height="455">
     </div>
-    <div class="game__option  game__option--selected" data-option="question2">
-      <img src="${this.data.question2}" alt="Option 2" width="304" height="455">
+    <div class="game__option  game__option--selected" data-option="1">
+      <img src="${this.imageTwo.url}" alt="Option 2" width="304" height="455">
     </div>
-    <div class="game__option" data-option="question3">
-      <img src="${this.data.question3}" alt="Option 3" width="304" height="455">
+    <div class="game__option" data-option="2">
+      <img src="${this.imageThree.url}" alt="Option 3" width="304" height="455">
     </div>
   </form>
   <div class="stats">

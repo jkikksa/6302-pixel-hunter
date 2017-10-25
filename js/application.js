@@ -6,20 +6,8 @@ import gameTwoScreen from './components/game/game-two-screen';
 import gameThreeScreen from './components/game/game-three-screen';
 import statsScreen from './components/stats/stats-screen';
 import {State as initialState} from './data/state';
-import getQuestion from './data/get-question';
-import getAnswer from './data/get-answer';
-
-
-import testData from './test';
 
 import Loader from './loader';
-
-const getData = () => {
-  const question = getQuestion();
-  const answer = getAnswer(question.id);
-
-  return {question, answer};
-};
 
 const getImagesURL = (data) => {
   return data.reduce((acc, it) => {
@@ -104,30 +92,27 @@ export default class Application {
   }
 
   static showIntro() {
-    // location.hash = ControllerId.INTRO;
     newRoutes[`INTRO`].init();
   }
 
   static showGreeting(state = initialState) {
     newRoutes[`GREETING`].init(state);
-    // location.hash = `${ControllerId.GREETING}?${saveState(state)}`;
   }
 
   static showRules(state) {
     newRoutes[`RULES`].init(state);
-    // location.hash = `${ControllerId.RULES}?${saveState(state)}`;
   }
 
   static showGame(state, data) {
     switch (data.type) {
       case `two-of-two`:
-        newRoutes[`GAME_ONE`].init(state, data.answers);
+        newRoutes[`GAME_ONE`].init(state, data);
         break;
       case `tinder-like`:
-        newRoutes[`GAME_TWO`].init(state, data.answers);
+        newRoutes[`GAME_TWO`].init(state, data);
         break;
       case `one-of-three`:
-        newRoutes[`GAME_THREE`].init(state, data.answers);
+        newRoutes[`GAME_THREE`].init(state, data);
         break;
     }
   }
@@ -137,29 +122,31 @@ export default class Application {
   }
 
   static showNextGame(state) {
+    const currentIndex = state.answers.length;
 
-    if (state.answers.length >= 10 || state.lives <= 0) {
+    if (currentIndex >= 10 || state.lives <= 0) {
       this.showStats(state);
     } else {
-      this.showGame(state, this.data[0]);
+      this.showGame(state, this.data[currentIndex]);
     }
   }
 
   static async init() {
     this.showIntro();
-    // this.data = await Loader.getData();
-    this.data = testData;
-    // console.log(this.data);
-    // const imagesURL = getImagesURL(this.data);
+    const hashValue = location.hash.replace(`#`, ``);
+    const [, data] = hashValue.split(`?`);
+    console.log(data);
+    this.data = await Loader.getData();
 
+    const imagesURL = getImagesURL(this.data);
+
+    await Promise.all(imagesURL.map((it) => loadImage(it)));
 
     // for (const url of imagesURL) {
     //   await loadImage(url);
     // }
     this.showGreeting();
     this.start();
-
-    // console.log(imagesURL);
   }
 }
 
