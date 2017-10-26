@@ -26,7 +26,7 @@ class RulesScreen {
     this.view.onFormSubmit = (evt, nameField) => {
       evt.preventDefault();
       this.model.name = nameField.value;
-      App.showGame(this.model.state);
+      App.showNextGame(this.model.state);
     };
 
     this.view.update();

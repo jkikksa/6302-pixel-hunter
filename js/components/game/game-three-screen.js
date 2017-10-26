@@ -25,7 +25,7 @@ class GameThreeScreen {
 
     this.onAnswer = (userAnswer) => {
       this.model.stopTimer();
-      const isOptionRight = this.rightAnswer[userAnswer.dataset.option] === `paint`;
+      const isOptionRight = this.rightAnswers[userAnswer.dataset.option] === this.questionType;
       this.model.addAnswer(isOptionRight);
       if (!isOptionRight) {
         this.model.decreaseLives();
@@ -35,11 +35,13 @@ class GameThreeScreen {
     };
   }
 
-  init(state) {
-    this.question = state.gameData.question.data;
-    this.rightAnswer = state.gameData.answer.data;
+  init(state, data) {
+    this.rightAnswers = data.answers.map((it) => {
+      return it.type;
+    });
+    this.questionType = data.question === `Найдите фото среди изображений` ? `photo` : `painting`;
     this.model.updateState(state);
-    this.view = new GameThreeView(this.question, this.onAnswer, this.model.answers, this.onBackButtonClicked);
+    this.view = new GameThreeView(data, this.onAnswer, this.model.answers, this.onBackButtonClicked);
     changeView(this.view);
     this.view.updateHeader(this.model.timeLeft, this.model.lives);
     this.model.startTimer(this.onTick, this.onExpired);

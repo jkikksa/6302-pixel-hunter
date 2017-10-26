@@ -15,6 +15,7 @@ class StatsScreen {
 
     this.view.onBackButtonClicked = () => {
       App.showGreeting();
+      history.pushState(``, document.title, window.location.pathname);
     };
   }
 }
