@@ -9,8 +9,12 @@ class GameTwoScreen {
     this.model = new GameModel();
 
     this.onBackButtonClicked = () => {
-      this.model.stopTimer();
-      App.showGreeting();
+      // eslint-disable-next-line
+      const isConfirm = confirm(`Вы потеряете всё прохождение игры! Согласны?`);
+      if (isConfirm) {
+        this.model.stopTimer();
+        App.showGreeting();
+      }
     };
 
     this.onTick = () => {
