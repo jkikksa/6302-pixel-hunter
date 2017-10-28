@@ -1,13 +1,6 @@
 import AbstractView from '../abstract-view';
 
 class HeaderView extends AbstractView {
-  constructor(timeleft, lives, onBackButtonClicked) {
-    super();
-    this.timeLeft = timeleft;
-    this.lives = lives;
-    this.onBackButtonClicked = onBackButtonClicked;
-  }
-
   get template() {
     return `\
 <header class="header">
@@ -27,10 +20,25 @@ class HeaderView extends AbstractView {
 
   bind() {
     const backButton = this.element.querySelector(`.back`);
+    this.timer = this.element.querySelector(`.game__timer`);
 
     backButton.addEventListener(`click`, () => {
       this.onBackButtonClicked();
     });
+  }
+
+  update(timeleft, lives, onBackButtonClicked) {
+    this.timeLeft = timeleft;
+    this.lives = lives;
+    this.onBackButtonClicked = onBackButtonClicked;
+  }
+
+  updateTime(timeleft) {
+    this.timer.textContent = timeleft;
+  }
+
+  onSoonExpired() {
+    this.timer.classList.add(`game__timer--flash`);
   }
 }
 

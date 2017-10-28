@@ -3,9 +3,9 @@ import StatsBarView from '../stats-bar/stats-bar-view';
 import HeaderView from '../header/header-view';
 import footer from '../footer/footer-view';
 
-const update = (container, view) => {
+const update = (container, element) => {
   container.innerHTML = ``;
-  container.appendChild(view.element);
+  container.appendChild(element);
 };
 
 class GameTwoView extends AbstractView {
@@ -15,6 +15,7 @@ class GameTwoView extends AbstractView {
     this.onAnswer = onAnswer;
     this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;
+    this.HeaderView = new HeaderView();
   }
 
   get template() {
@@ -43,7 +44,16 @@ ${footer.template}`;
   }
 
   updateHeader(timeleft, lives) {
-    update(this.headerContainer, new HeaderView(timeleft, lives, this.onBackButtonClicked));
+    this.HeaderView.update(timeleft, lives, this.onBackButtonClicked);
+    update(this.headerContainer, this.HeaderView.element);
+  }
+
+  updateTime(timeleft) {
+    this.HeaderView.updateTime(timeleft);
+  }
+
+  onSoonExpired() {
+    this.HeaderView.onSoonExpired();
   }
 
   bind() {

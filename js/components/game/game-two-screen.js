@@ -13,7 +13,10 @@ class GameTwoScreen {
     };
 
     this.onTick = () => {
-      this.view.updateHeader(this.model.timeLeft, this.model.lives);
+      this.view.updateTime(this.model.timeLeft);
+      if (this.model.timeLeft <= 5) {
+        this.view.onSoonExpired();
+      }
     };
 
     this.onExpired = () => {
