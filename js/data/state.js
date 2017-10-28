@@ -52,7 +52,7 @@ export const setName = (oldState, name) => {
 /**
  * Устанавливает оставшееся время
  * @param {State} oldState
- * @param {string} time
+ * @param {number} time
  * @return {State}
  */
 export const setTime = (oldState, time) => {

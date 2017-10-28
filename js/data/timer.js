@@ -15,7 +15,7 @@ class Timer {
   /**
    * Уменьшает время на единицу.
    * При достижении конца сообщает о том, что таймер закончен
-   * @return {number|string} [description]
+   * @return {number|string}
    */
   tick() {
     if (this.isExpired) {
@@ -31,8 +31,8 @@ class Timer {
 
   /**
    * Запускает таймер.
-   * @param {Function} onTick Callback. Вызывает каждый тик.
-   * @param {Function} onExpired Callback. Вызывает после окончания таймера.
+   * @param {Function} onTick Запускается каждый тик таймера.
+   * @param {Function} onExpired Запускается после окончания работы таймера.
    */
   start(onTick, onExpired) {
     this.timer = setTimeout(() => {
