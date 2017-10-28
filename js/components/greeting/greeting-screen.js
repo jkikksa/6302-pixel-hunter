@@ -2,7 +2,6 @@ import GreetingView from './greeting-view';
 import {changeView} from '../../utils';
 import App from '../../application';
 
-
 class GreetingScreen {
   constructor() {
     this.view = new GreetingView();

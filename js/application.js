@@ -6,58 +6,8 @@ import gameTwoScreen from './components/game/game-two-screen';
 import gameThreeScreen from './components/game/game-three-screen';
 import statsScreen from './components/stats/stats-screen';
 import {State as initialState} from './data/state';
-import Loader from './loader';
-
-/**
- * Преобразует данные игры в массив ссылок на изображения
- * @param {Array.<Object>} data Данные игры, загруженные с сервера
- * @return {Array.<string>}
- */
-const getImagesURL = (data) => {
-  return data.reduce((acc, it) => {
-    return acc.concat(it.answers.map((answer) => answer.image.url));
-  }, []);
-};
-
-/**
- * Загружает изображение
- * @param {string} url Ссылка на изображение
- * @return {Promise}
- */
-const loadImage = (url) => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.addEventListener(`load`, () => {
-      return resolve(img);
-    });
-    img.addEventListener(`error`, () => {
-      return reject(`Ошибка загрузки`);
-    });
-    img.src = url;
-  });
-};
-
-/**
- * Преобразует State в строку
- * @param {Object} state
- * @return {string}
- */
-const saveState = (state) => {
-  return JSON.stringify(state);
-};
-
-/**
- * Парсит строку в State
- * @param {string} dataString
- * @return {Object}
- */
-const loadState = (dataString) => {
-  try {
-    return JSON.parse(dataString);
-  } catch (e) {
-    return initialState;
-  }
-};
+import APIService from './api-service';
+import {saveState, loadState} from './utils';
 
 /**
  * @enum {Class}
@@ -109,7 +59,7 @@ class Application {
     const currentIndex = state.answers.length;
 
     if (currentIndex >= 10 || state.lives < 0) {
-      await Loader.sendStatistics(state.playerName.toLowerCase(), state);
+      await APIService.sendStatistics(state.playerName.toLowerCase(), state);
       this.showStats(state);
     } else {
       this.showGame(state, this.data[currentIndex]);
@@ -117,9 +67,9 @@ class Application {
   }
 
   static async _loadAllGameData() {
-    this.data = await Loader.getData();
-    const imagesURL = getImagesURL(this.data);
-    await Promise.all(imagesURL.map((it) => loadImage(it)));
+    this.data = await APIService.getData();
+    const imagesURL = APIService.getImagesURL(this.data);
+    await Promise.all(imagesURL.map((it) => APIService.loadImage(it)));
   }
 
   static init() {

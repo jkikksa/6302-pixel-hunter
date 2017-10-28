@@ -23,7 +23,6 @@ class GameOneScreen extends GameScreen {
 
   init(state, data) {
     [{type: this.firstRightAnswer, image: this.imageOne}, {type: this.secondRightAnswer, image: this.imageTwo}] = data.answers;
-
     this.model.updateState(state);
     this.view = new GameOneView(this.imageOne, this.imageTwo, this.onAnswer, this.model.answers, this.onBackButtonClicked);
     changeView(this.view);

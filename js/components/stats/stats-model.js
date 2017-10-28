@@ -5,10 +5,6 @@ class StatsModel {
     this.getScore = getScore;
   }
 
-  updateState(newState) {
-    this.state = newState;
-  }
-
   get playerName() {
     return this.state.playerName;
   }
@@ -35,6 +31,10 @@ class StatsModel {
       });
       return acc;
     }, []);
+  }
+
+  updateState(newState) {
+    this.state = newState;
   }
 }
 

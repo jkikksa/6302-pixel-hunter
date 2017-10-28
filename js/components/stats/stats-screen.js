@@ -2,7 +2,7 @@ import StatsView from './stats-view';
 import StatsModel from './stats-model';
 import {changeView} from '../../utils';
 import App from '../../application';
-import Loader from '../../loader';
+import APIService from '../../api-service';
 
 class StatsScreen {
   constructor() {
@@ -11,7 +11,7 @@ class StatsScreen {
 
   async init(state) {
     this.model.updateState(state);
-    this.model.gameStatistics = await Loader.loadStatistics(this.model.playerName);
+    this.model.gameStatistics = await APIService.loadStatistics(this.model.playerName);
     this.view = new StatsView(this.model.gameStatistics);
     changeView(this.view);
 

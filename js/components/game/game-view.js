@@ -1,10 +1,6 @@
 import AbstractView from '../abstract-view';
 import HeaderView from '../header/header-view';
-
-const update = (container, element) => {
-  container.innerHTML = ``;
-  container.appendChild(element);
-};
+import {update} from '../../utils';
 
 class GameView extends AbstractView {
   constructor(onBackButtonClicked) {

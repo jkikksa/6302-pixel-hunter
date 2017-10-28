@@ -2,7 +2,6 @@ import AbstractView from '../abstract-view';
 import footer from '../footer/footer-view';
 
 class IntroView extends AbstractView {
-
   get template() {
     return `\
 <div id="main" class="central__content">

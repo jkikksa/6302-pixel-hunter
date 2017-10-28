@@ -2,7 +2,6 @@ import Timer from '../../data/timer';
 import {setTime, resetTime, setLives, addAnswer} from '../../data/state';
 
 class GameModel {
-
   get timeLeft() {
     return this.state.timeLeft;
   }

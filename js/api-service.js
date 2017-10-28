@@ -6,7 +6,7 @@ const URL = {
   STATISTICS: `https://es.dump.academy/pixel-hunter/stats/`
 };
 
-class Loader {
+class APIService {
 
   /** Получает данные игры с сервера
    * @return {Promise}
@@ -53,6 +53,35 @@ class Loader {
           }
         });
   }
+
+  /**
+ * Преобразует данные игры в массив ссылок на изображения
+ * @param {Array.<Object>} data Данные игры, загруженные с сервера
+ * @return {Array.<string>}
+ */
+  static getImagesURL(data) {
+    return data.reduce((acc, it) => {
+      return acc.concat(it.answers.map((answer) => answer.image.url));
+    }, []);
+  }
+
+  /**
+ * Загружает изображение
+ * @param {string} url Ссылка на изображение
+ * @return {Promise}
+ */
+  static loadImage(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.addEventListener(`load`, () => {
+        return resolve(img);
+      });
+      img.addEventListener(`error`, () => {
+        return reject(`Ошибка загрузки`);
+      });
+      img.src = url;
+    });
+  }
 }
 
-export default Loader;
+export default APIService;
