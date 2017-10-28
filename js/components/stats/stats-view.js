@@ -2,6 +2,8 @@ import AbstractView from '../abstract-view';
 import StatsBarView from '../stats-bar/stats-bar-view';
 import footer from '../footer/footer-view';
 
+const LAST_RESULT_INDEX = 1;
+
 class StatsView extends AbstractView {
   constructor(gameStatistics) {
     super();
@@ -10,7 +12,7 @@ class StatsView extends AbstractView {
 
   getWinTemplate(score, answers, index) {
     return `\
-${index === 1 ? `<h1>Победа!</h1>` : ``}
+${index === LAST_RESULT_INDEX ? `<h1>Победа!</h1>` : ``}
 <table class="result__table">
   <tr>
     <td class="result__number">${index}.</td>
@@ -49,7 +51,7 @@ ${index === 1 ? `<h1>Победа!</h1>` : ``}
 
   getLoseTemplate(answers, index) {
     return `
-${index === 1 ? `<h1>Поражение</h1>` : ``}
+${index === LAST_RESULT_INDEX ? `<h1>Поражение</h1>` : ``}
 <table class="result__table">
   <tr>
     <td class="result__number">${index}.</td>

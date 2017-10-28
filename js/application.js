@@ -8,13 +8,22 @@ import statsScreen from './components/stats/stats-screen';
 import {State as initialState} from './data/state';
 import Loader from './loader';
 
-
+/**
+ * Преобразует данные игры в массив ссылок на изображения
+ * @param {Array.<Object>} data Данные игры, загруженные с сервера
+ * @return {Array.<string>}
+ */
 const getImagesURL = (data) => {
   return data.reduce((acc, it) => {
     return acc.concat(it.answers.map((answer) => answer.image.url));
   }, []);
 };
 
+/**
+ * Загружает изображение
+ * @param {string} url Ссылка на изображение
+ * @return {Promise}
+ */
 const loadImage = (url) => {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -28,12 +37,21 @@ const loadImage = (url) => {
   });
 };
 
+/**
+ * Преобразует State в строку
+ * @param {Object} state
+ * @return {string}
+ */
 const saveState = (state) => {
   return JSON.stringify(state);
 };
 
+/**
+ * Парсит строку в State
+ * @param {string} dataString
+ * @return {Object}
+ */
 const loadState = (dataString) => {
-
   try {
     return JSON.parse(dataString);
   } catch (e) {
@@ -41,6 +59,9 @@ const loadState = (dataString) => {
   }
 };
 
+/**
+ * @enum {Class}
+ */
 const routes = {
   INTRO: introScreen,
   GREETING: greetingScreen,

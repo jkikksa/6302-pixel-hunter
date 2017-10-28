@@ -2,6 +2,7 @@ import GameThreeView from './game-three-view';
 import GameModel from './game-model';
 import {changeView} from '../../utils';
 import App from '../../application';
+import settings from '../../data/settings';
 
 class GameThreeScreen {
   constructor() {
@@ -14,7 +15,7 @@ class GameThreeScreen {
 
     this.onTick = () => {
       this.view.updateTime(this.model.timeLeft);
-      if (this.model.timeLeft <= 5) {
+      if (this.model.timeLeft <= settings.WARNING_TIME) {
         this.view.onSoonExpired();
       }
     };

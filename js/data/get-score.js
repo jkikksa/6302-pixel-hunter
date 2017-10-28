@@ -1,3 +1,5 @@
+import settings from './settings';
+
 /**
  * Кол-во очков за типы ответов
  * @enum {number}
@@ -19,16 +21,16 @@ const REMAINING_LIFE_SCORE = 50;
 /**
  * Функция подсчёта очков при окончании игры
  * @param {Array<Object>} answers Массив ответов пользователя
- * @param {number} remainingLifes Количество оставшихся жизней
+ * @param {number} remainingLives Количество оставшихся жизней
  * @return {Object}
  */
-
 const getScore = (answers, remainingLives) => {
   let score = {};
-  if (answers.length < 10) {
+  if (answers.length < settings.LEVELS_COUNT) {
     score.totalScore = -1;
     return score;
   }
+
   score = answers.reduce((acc, it) => {
     acc.answersScore += Scores[it.correctness.toUpperCase()];
     acc.bonusCount += it.type === `fast` ? 1 : 0;
