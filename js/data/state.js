@@ -1,4 +1,4 @@
-import settings from './settings';
+import Settings from './settings';
 
 /**
  * @enum {string}
@@ -14,9 +14,9 @@ const AnswersMap = {
  * @return {string}
  */
 const getType = (timeLeft) => {
-  if (timeLeft > settings.FAST_TIME) {
+  if (timeLeft > Settings.FAST_TIME) {
     return `fast`;
-  } else if (timeLeft < settings.SLOW_TIME) {
+  } else if (timeLeft < Settings.SLOW_TIME) {
     return `slow`;
   }
   return `normal`;
@@ -31,8 +31,8 @@ const getType = (timeLeft) => {
  *
  */
 export const State = {
-  lives: settings.LIVES,
-  timeLeft: settings.LEVEL_TIME,
+  lives: Settings.LIVES,
+  timeLeft: Settings.LEVEL_TIME,
   playerName: ``,
   answers: []
 };
@@ -68,7 +68,7 @@ export const setTime = (oldState, time) => {
  */
 export const resetTime = (oldState) => {
   const newState = Object.assign({}, oldState);
-  newState.timeLeft = settings.LEVEL_TIME;
+  newState.timeLeft = Settings.LEVEL_TIME;
   return newState;
 };
 

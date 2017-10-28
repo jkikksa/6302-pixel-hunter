@@ -1,6 +1,6 @@
 import AbstractView from '../abstract-view';
 import footer from '../footer/footer-view';
-import settings from '../../data/settings';
+import Settings from '../../data/settings';
 
 class RulesView extends AbstractView {
   get template() {
@@ -15,12 +15,12 @@ class RulesView extends AbstractView {
 </header>
 <div class="rules">
   <h1 class="rules__title">Правила</h1>
-  <p class="rules__description">Угадай ${settings.LEVELS_COUNT} раз для каждого изображения фото <img
+  <p class="rules__description">Угадай ${Settings.LEVELS_COUNT} раз для каждого изображения фото <img
     src="img/photo_icon.png" width="16" height="16"> или рисунок <img
     src="img/paint_icon.png" width="16" height="16" alt="">.<br>
     Фотографиями или рисунками могут быть оба изображения.<br>
-    На каждую попытку отводится ${settings.LEVEL_TIME} секунд.<br>
-    Ошибиться можно не более ${settings.LIVES} раз.<br>
+    На каждую попытку отводится ${Settings.LEVEL_TIME} секунд.<br>
+    Ошибиться можно не более ${Settings.LIVES} раз.<br>
     <br>
     Готовы?
   </p>

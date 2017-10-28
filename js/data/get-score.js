@@ -1,4 +1,4 @@
-import settings from './settings';
+import Settings from './settings';
 
 /**
  * Кол-во очков за типы ответов
@@ -26,7 +26,7 @@ const REMAINING_LIFE_SCORE = 50;
  */
 const getScore = (answers, remainingLives) => {
   let score = {};
-  if (answers.length < settings.LEVELS_COUNT) {
+  if (answers.length < Settings.LEVELS_COUNT) {
     score.totalScore = -1;
     return score;
   }

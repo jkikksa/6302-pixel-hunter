@@ -1,35 +1,11 @@
 import GameOneView from './game-one-view';
-import GameModel from './game-model';
+import GameScreen from './game-screen';
 import {changeView} from '../../utils';
 import App from '../../application';
-import settings from '../../data/settings';
 
-class GameOneScreen {
+class GameOneScreen extends GameScreen {
   constructor() {
-    this.model = new GameModel();
-
-    this.onBackButtonClicked = () => {
-      // eslint-disable-next-line
-      const isConfirm = confirm(`Вы потеряете всё прохождение игры! Согласны?`);
-      if (isConfirm) {
-        this.model.stopTimer();
-        App.showGreeting();
-      }
-    };
-
-    this.onTick = () => {
-      this.view.updateTime(this.model.timeLeft);
-      if (this.model.timeLeft <= settings.WARNING_TIME) {
-        this.view.onSoonExpired();
-      }
-    };
-
-    this.onExpired = () => {
-      this.model.addAnswer(false);
-      this.model.decreaseLives();
-      this.model.resetTime();
-      App.showNextGame(this.model.state);
-    };
+    super();
 
     this.onAnswer = (userAnswer) => {
       this.model.stopTimer();

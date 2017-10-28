@@ -2,7 +2,7 @@
  * Параметры игры
  * @enum {number}
  */
-const settings = {
+const Settings = {
   LEVELS_COUNT: 10,
   LIVES: 3,
   LEVEL_TIME: 30,
@@ -11,4 +11,4 @@ const settings = {
   WARNING_TIME: 5
 };
 
-export default settings;
+export default Settings;

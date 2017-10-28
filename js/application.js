@@ -72,7 +72,7 @@ const routes = {
   STATS: statsScreen
 };
 
-export default class Application {
+class Application {
 
   static showIntro() {
     routes[`INTRO`].init();
@@ -140,4 +140,6 @@ export default class Application {
     this.showGreeting();
   }
 }
+
+export default Application;
 
