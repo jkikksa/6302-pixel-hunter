@@ -84,30 +84,38 @@ export default class Application {
     location.hash = `stats?${saveState(state)}`;
   }
 
-  static showNextGame(state) {
+  static async showNextGame(state) {
     const currentIndex = state.answers.length;
 
-    if (currentIndex >= 10 || state.lives <= 0) {
+    if (currentIndex >= 10 || state.lives < 0) {
+      await Loader.sendStatistics(state.playerName.toLowerCase(), state);
       this.showStats(state);
     } else {
       this.showGame(state, this.data[currentIndex]);
     }
   }
 
-  static async init() {
+  static async _loadAllGameData() {
+    this.data = await Loader.getData();
+    const imagesURL = getImagesURL(this.data);
+    await Promise.all(imagesURL.map((it) => loadImage(it)));
+  }
+
+  static init() {
     const hashValue = location.hash.replace(`#`, ``);
     if (hashValue !== ``) {
       const [, hashData] = hashValue.split(`?`);
       this.showStats(loadState(hashData));
       return;
     }
-    this.showIntro();
-    this.data = await Loader.getData();
+    this.startGame();
+  }
 
-    const imagesURL = getImagesURL(this.data);
-
-    await Promise.all(imagesURL.map((it) => loadImage(it)));
-
+  static async startGame() {
+    if (typeof this.data === `undefined`) {
+      this.showIntro();
+      await this._loadAllGameData();
+    }
     this.showGreeting();
   }
 }

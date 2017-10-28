@@ -1,7 +1,5 @@
 import IntroView from './intro-view';
 import {changeView} from '../../utils';
-import App from '../../application';
-
 
 class IntroScreen {
   constructor() {
@@ -10,10 +8,6 @@ class IntroScreen {
 
   init() {
     changeView(this.view);
-    this.view.onNextButtonClick = () => {
-
-      App.showGreeting();
-    };
   }
 }
 

@@ -1,21 +1,40 @@
 import getScore from '../../data/get-score';
 
 class StatsModel {
+  constructor() {
+    this.getScore = getScore;
+  }
 
   updateState(newState) {
     this.state = newState;
   }
 
-  get answers() {
-    return this.state.answers;
+  get playerName() {
+    return this.state.playerName;
   }
 
-  get lives() {
-    return this.state.lives;
+  set gameStatistics(data) {
+    const isDataValid = data.every((it) => {
+      return it.hasOwnProperty(`lives`) && it.hasOwnProperty(`answers`);
+    });
+    if (isDataValid) {
+      this._statistics = data;
+    } else {
+      this._statistics = [{
+        lives: this.state.lives,
+        answers: this.state.answers
+      }];
+    }
   }
 
-  get score() {
-    return getScore(this.answers, this.lives);
+  get gameStatistics() {
+    return this._statistics.reduceRight((acc, it) => {
+      acc.push({
+        score: this.getScore(it.answers, it.lives),
+        answers: it.answers
+      });
+      return acc;
+    }, []);
   }
 }
 

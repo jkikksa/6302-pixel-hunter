@@ -13,19 +13,6 @@ class IntroView extends AbstractView {
 </div>
 ${footer.template}`;
   }
-
-  bind() {
-    const intro = this.element;
-    const nextButton = intro.querySelector(`.intro__asterisk`);
-
-    nextButton.addEventListener(`click`, () => {
-      this.onNextButtonClick();
-    });
-  }
-
-  onNextButtonClick() {
-
-  }
 }
 
 export default IntroView;
