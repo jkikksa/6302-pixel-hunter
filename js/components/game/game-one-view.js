@@ -1,22 +1,14 @@
-import AbstractView from '../abstract-view';
+import GameView from './game-view';
 import StatsBarView from '../stats-bar/stats-bar-view';
-import HeaderView from '../header/header-view';
 import footer from '../footer/footer-view';
 
-const update = (container, element) => {
-  container.innerHTML = ``;
-  container.appendChild(element);
-};
-
-class GameOneView extends AbstractView {
+class GameOneView extends GameView {
   constructor(imageOne, imageTwo, onAnswer, answers, onBackButtonClicked) {
-    super();
+    super(onBackButtonClicked);
     this.imageOne = imageOne;
     this.imageTwo = imageTwo;
     this.onAnswer = onAnswer;
     this.answers = answers;
-    this.onBackButtonClicked = onBackButtonClicked;
-    this.HeaderView = new HeaderView();
   }
 
   get template() {
@@ -55,21 +47,7 @@ class GameOneView extends AbstractView {
 ${footer.template}`;
   }
 
-  updateHeader(timeleft, lives) {
-    this.HeaderView.update(timeleft, lives, this.onBackButtonClicked);
-    update(this.headerContainer, this.HeaderView.element);
-  }
-
-  updateTime(timeleft) {
-    this.HeaderView.updateTime(timeleft);
-  }
-
-  onSoonExpired() {
-    this.HeaderView.onSoonExpired();
-  }
-
   bind() {
-    this.headerContainer = this.element.querySelector(`.header-container`);
     const form = this.element.querySelector(`.game__content`);
     const firstAnswers = Array.from(form.querySelectorAll(`input[name="question1"]`));
     const secondAnswers = Array.from(form.querySelectorAll(`input[name="question2"]`));

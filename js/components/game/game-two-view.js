@@ -1,21 +1,13 @@
-import AbstractView from '../abstract-view';
+import GameView from './game-view';
 import StatsBarView from '../stats-bar/stats-bar-view';
-import HeaderView from '../header/header-view';
 import footer from '../footer/footer-view';
 
-const update = (container, element) => {
-  container.innerHTML = ``;
-  container.appendChild(element);
-};
-
-class GameTwoView extends AbstractView {
+class GameTwoView extends GameView {
   constructor(image, onAnswer, answers, onBackButtonClicked) {
-    super();
+    super(onBackButtonClicked);
     this.image = image;
     this.onAnswer = onAnswer;
-    this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;
-    this.HeaderView = new HeaderView();
   }
 
   get template() {
@@ -43,21 +35,7 @@ class GameTwoView extends AbstractView {
 ${footer.template}`;
   }
 
-  updateHeader(timeleft, lives) {
-    this.HeaderView.update(timeleft, lives, this.onBackButtonClicked);
-    update(this.headerContainer, this.HeaderView.element);
-  }
-
-  updateTime(timeleft) {
-    this.HeaderView.updateTime(timeleft);
-  }
-
-  onSoonExpired() {
-    this.HeaderView.onSoonExpired();
-  }
-
   bind() {
-    this.headerContainer = this.element.querySelector(`.header-container`);
     const form = this.element.querySelector(`.game__content`);
     const answers = Array.from(form.querySelectorAll(`input[name="question1"]`));
     form.addEventListener(`change`, () => {
