@@ -1,3 +1,6 @@
+const EXPIRED_TIME = 0;
+const SECOND = 1000;
+
 /**
  * Конструктор таймера.
  * @constructor
@@ -5,21 +8,21 @@
  */
 class Timer {
   constructor(time) {
-    this.time = time < 0 ? 0 : time;
-    this.isExpired = this.time < 0;
+    this.time = time < EXPIRED_TIME ? EXPIRED_TIME : time;
+    this.isExpired = this.time < EXPIRED_TIME;
   }
 
   /**
    * Уменьшает время на единицу.
    * При достижении конца сообщает о том, что таймер закончен
-   * @return {number|string} [description]
+   * @return {number|string}
    */
   tick() {
     if (this.isExpired) {
       return `Таймер закончен`;
     }
     this.time--;
-    if (this.time <= 0) {
+    if (this.time <= EXPIRED_TIME) {
       this.isExpired = true;
       return `Таймер закончен`;
     }
@@ -28,8 +31,8 @@ class Timer {
 
   /**
    * Запускает таймер.
-   * @param {Function} onTick Callback. Вызывает каждый тик.
-   * @param {Function} onExpired Callback. Вызывает после окончания таймера.
+   * @param {Function} onTick Запускается каждый тик таймера.
+   * @param {Function} onExpired Запускается после окончания работы таймера.
    */
   start(onTick, onExpired) {
     this.timer = setTimeout(() => {
@@ -41,7 +44,7 @@ class Timer {
       this.tick();
       onTick(this.time);
       this.start(onTick, onExpired);
-    }, 1000);
+    }, SECOND);
   }
 
   /**

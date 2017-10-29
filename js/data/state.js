@@ -1,3 +1,5 @@
+import Settings from './settings';
+
 /**
  * @enum {string}
  */
@@ -6,19 +8,15 @@ const AnswersMap = {
   false: `incorrect`
 };
 
-const TIME_LEFT = 30;
-const FAST_TIME = 20;
-const SLOW_TIME = 10;
-
 /**
  * Возвращает тип ответа в зависимости от скорости ответа
  * @param {number} timeLeft
  * @return {string}
  */
 const getType = (timeLeft) => {
-  if (timeLeft > FAST_TIME) {
+  if (timeLeft > Settings.FAST_TIME) {
     return `fast`;
-  } else if (timeLeft < SLOW_TIME) {
+  } else if (timeLeft < Settings.SLOW_TIME) {
     return `slow`;
   }
   return `normal`;
@@ -33,8 +31,8 @@ const getType = (timeLeft) => {
  *
  */
 export const State = {
-  lives: 3,
-  timeLeft: 30,
+  lives: Settings.LIVES,
+  timeLeft: Settings.LEVEL_TIME,
   playerName: ``,
   answers: []
 };
@@ -54,7 +52,7 @@ export const setName = (oldState, name) => {
 /**
  * Устанавливает оставшееся время
  * @param {State} oldState
- * @param {string} time
+ * @param {number} time
  * @return {State}
  */
 export const setTime = (oldState, time) => {
@@ -70,7 +68,7 @@ export const setTime = (oldState, time) => {
  */
 export const resetTime = (oldState) => {
   const newState = Object.assign({}, oldState);
-  newState.timeLeft = TIME_LEFT;
+  newState.timeLeft = Settings.LEVEL_TIME;
   return newState;
 };
 

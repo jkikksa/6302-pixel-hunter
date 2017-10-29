@@ -1,3 +1,5 @@
+import {State as initialState} from './data/state';
+
 /**
  * Создаёт из текстового шаблона DOM-элемент
  * @param {string} template
@@ -22,4 +24,31 @@ const container = document.querySelector(`main.central`);
 export const changeView = (view) => {
   container.innerHTML = ``;
   container.appendChild(view.element);
+};
+
+/**
+ * Преобразует State в строку
+ * @param {Object} state
+ * @return {string}
+ */
+export const saveState = (state) => {
+  return JSON.stringify(state);
+};
+
+/**
+ * Парсит строку в State
+ * @param {string} dataString
+ * @return {Object}
+ */
+export const loadState = (dataString) => {
+  try {
+    return JSON.parse(dataString);
+  } catch (e) {
+    return initialState;
+  }
+};
+
+export const update = (cnt, element) => {
+  cnt.innerHTML = ``;
+  cnt.appendChild(element);
 };

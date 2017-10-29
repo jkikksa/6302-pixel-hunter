@@ -1,7 +1,6 @@
 import AbstractView from '../abstract-view';
 
 class FooterView extends AbstractView {
-
   get template() {
     return `\
 <footer class="footer">

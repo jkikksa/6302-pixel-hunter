@@ -1,27 +1,11 @@
 import GameTwoView from './game-two-view';
-import GameModel from './game-model';
+import GameScreen from './game-screen';
 import {changeView} from '../../utils';
 import App from '../../application';
 
-class GameTwoScreen {
+class GameTwoScreen extends GameScreen {
   constructor() {
-    this.model = new GameModel();
-
-    this.onBackButtonClicked = () => {
-      this.model.stopTimer();
-      App.showGreeting();
-    };
-
-    this.onTick = () => {
-      this.view.updateHeader(this.model.timeLeft, this.model.lives);
-    };
-
-    this.onExpired = () => {
-      this.model.addAnswer(false);
-      this.model.decreaseLives();
-      this.model.resetTime();
-      App.showNextGame(this.model.state);
-    };
+    super();
 
     this.onAnswer = (userAnswer) => {
       this.model.stopTimer();

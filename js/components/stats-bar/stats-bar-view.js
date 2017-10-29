@@ -1,4 +1,5 @@
 import AbstractView from '../abstract-view';
+import Settings from '../../data/settings';
 
 class StatsBarView extends AbstractView {
   constructor(answers) {
@@ -20,7 +21,7 @@ class StatsBarView extends AbstractView {
       } else {
         return `<li class="stats__result stats__result--wrong"></li>`;
       }
-    }).concat(new Array(10 - this.answers.length).fill(`<li class="stats__result stats__result--unknown"></li>`)).join(``);
+    }).concat(new Array(Settings.LEVELS_COUNT - this.answers.length).fill(`<li class="stats__result stats__result--unknown"></li>`)).join(``);
     return `\
 <ul class="stats">
   ${statsBarTemplate};

@@ -1,27 +1,11 @@
 import GameThreeView from './game-three-view';
-import GameModel from './game-model';
+import GameScreen from './game-screen';
 import {changeView} from '../../utils';
 import App from '../../application';
 
-class GameThreeScreen {
+class GameThreeScreen extends GameScreen {
   constructor() {
-    this.model = new GameModel();
-
-    this.onBackButtonClicked = () => {
-      this.model.stopTimer();
-      App.showGreeting();
-    };
-
-    this.onTick = () => {
-      this.view.updateHeader(this.model.timeLeft, this.model.lives);
-    };
-
-    this.onExpired = () => {
-      this.model.addAnswer(false);
-      this.model.decreaseLives();
-      this.model.resetTime();
-      App.showNextGame(this.model.state);
-    };
+    super();
 
     this.onAnswer = (userAnswer) => {
       this.model.stopTimer();
@@ -36,9 +20,7 @@ class GameThreeScreen {
   }
 
   init(state, data) {
-    this.rightAnswers = data.answers.map((it) => {
-      return it.type;
-    });
+    this.rightAnswers = data.answers.map((it) => it.type);
     this.questionType = data.question === `Найдите фото среди изображений` ? `photo` : `painting`;
     this.model.updateState(state);
     this.view = new GameThreeView(data, this.onAnswer, this.model.answers, this.onBackButtonClicked);

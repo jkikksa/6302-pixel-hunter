@@ -1,19 +1,12 @@
-import AbstractView from '../abstract-view';
+import GameView from './game-view';
 import StatsBarView from '../stats-bar/stats-bar-view';
-import HeaderView from '../header/header-view';
 import footer from '../footer/footer-view';
 
-const update = (container, view) => {
-  container.innerHTML = ``;
-  container.appendChild(view.element);
-};
-
-class GameTwoView extends AbstractView {
+class GameTwoView extends GameView {
   constructor(image, onAnswer, answers, onBackButtonClicked) {
-    super();
+    super(onBackButtonClicked);
     this.image = image;
     this.onAnswer = onAnswer;
-    this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;
   }
 
@@ -30,7 +23,7 @@ class GameTwoView extends AbstractView {
         <span>Фото</span>
       </label>
       <label class="game__answer  game__answer--wide  game__answer--paint">
-        <input name="question1" type="radio" value="paint">
+        <input name="question1" type="radio" value="painting">
         <span>Рисунок</span>
       </label>
     </div>
@@ -42,12 +35,7 @@ class GameTwoView extends AbstractView {
 ${footer.template}`;
   }
 
-  updateHeader(timeleft, lives) {
-    update(this.headerContainer, new HeaderView(timeleft, lives, this.onBackButtonClicked));
-  }
-
   bind() {
-    this.headerContainer = this.element.querySelector(`.header-container`);
     const form = this.element.querySelector(`.game__content`);
     const answers = Array.from(form.querySelectorAll(`input[name="question1"]`));
     form.addEventListener(`change`, () => {

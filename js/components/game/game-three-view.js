@@ -1,19 +1,12 @@
-import AbstractView from '../abstract-view';
+import GameView from './game-view';
 import StatsBarView from '../stats-bar/stats-bar-view';
-import HeaderView from '../header/header-view';
 import footer from '../footer/footer-view';
 
-const update = (container, view) => {
-  container.innerHTML = ``;
-  container.appendChild(view.element);
-};
-
-class GameThreeView extends AbstractView {
+class GameThreeView extends GameView {
   constructor(data, onAnswer, answers, onBackButtonClicked) {
-    super();
+    super(onBackButtonClicked);
     this.data = data;
     this.onAnswer = onAnswer;
-    this.onBackButtonClicked = onBackButtonClicked;
     this.answers = answers;
     [{image: this.imageOne}, {image: this.imageTwo}, {image: this.imageThree}] = this.data.answers;
   }
@@ -41,12 +34,7 @@ class GameThreeView extends AbstractView {
 ${footer.template}`;
   }
 
-  updateHeader(timeleft, lives) {
-    update(this.headerContainer, new HeaderView(timeleft, lives, this.onBackButtonClicked));
-  }
-
   bind() {
-    this.headerContainer = this.element.querySelector(`.header-container`);
     const form = this.element.querySelector(`.game__content`);
     const options = form.querySelectorAll(`.game__option`);
     for (const option of options) {

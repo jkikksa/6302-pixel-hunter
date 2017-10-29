@@ -2,7 +2,6 @@ import AbstractView from '../abstract-view';
 import footer from '../footer/footer-view';
 
 class IntroView extends AbstractView {
-
   get template() {
     return `\
 <div id="main" class="central__content">
@@ -12,19 +11,6 @@ class IntroView extends AbstractView {
   </div>
 </div>
 ${footer.template}`;
-  }
-
-  bind() {
-    const intro = this.element;
-    const nextButton = intro.querySelector(`.intro__asterisk`);
-
-    nextButton.addEventListener(`click`, () => {
-      this.onNextButtonClick();
-    });
-  }
-
-  onNextButtonClick() {
-
   }
 }
 
