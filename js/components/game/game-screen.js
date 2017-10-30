@@ -8,7 +8,7 @@ class GameScreen {
 
     this.onBackButtonClicked = () => {
       // eslint-disable-next-line
-      const isConfirm = confirm(`Вы потеряете всё прохождение игры! Согласны?`);
+      const isConfirm = window.confirm(`Вы потеряете всё прохождение игры! Согласны?`);
       if (isConfirm) {
         this.model.stopTimer();
         App.showGreeting();
