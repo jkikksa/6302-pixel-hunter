@@ -94,7 +94,7 @@ gulp.task('serve', ['assemble'], function () {
   server.init({
     server: './build',
     notify: false,
-    open: false,
+    open: true,
     port: 3000,
     ui: false
   });
