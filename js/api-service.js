@@ -1,7 +1,7 @@
 /** Список URL REST API
  * @enum {string}
  */
-const URL = {
+const Url = {
   DATA: `https://es.dump.academy/pixel-hunter/questions`,
   STATISTICS: `https://es.dump.academy/pixel-hunter/stats/`
 };
@@ -12,7 +12,7 @@ class APIService {
    * @return {Promise}
    */
   static getData() {
-    return fetch(URL.DATA)
+    return fetch(Url.DATA)
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -29,7 +29,7 @@ class APIService {
    * @return {Promise}
    */
   static sendStatistics(username, data) {
-    return fetch(`${URL.STATISTICS}${username}`, {
+    return fetch(`${Url.STATISTICS}${username}`, {
       method: `POST`,
       headers: {
         'Content-Type': `application/json`
@@ -44,7 +44,7 @@ class APIService {
    * @return {Promise}
    */
   static loadStatistics(username) {
-    return fetch(`${URL.STATISTICS}${username}`)
+    return fetch(`${Url.STATISTICS}${username}`)
         .then((response) => {
           if (response.ok) {
             return response.json();

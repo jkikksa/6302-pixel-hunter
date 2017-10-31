@@ -12,7 +12,7 @@ import {saveState, loadState} from './utils';
 /**
  * @enum {Class}
  */
-const routes = {
+const Routes = {
   INTRO: introScreen,
   GREETING: greetingScreen,
   RULES: rulesScreen,
@@ -25,33 +25,33 @@ const routes = {
 class Application {
 
   static showIntro() {
-    routes[`INTRO`].init();
+    Routes[`INTRO`].init();
   }
 
   static showGreeting(state = initialState) {
-    routes[`GREETING`].init(state);
+    Routes[`GREETING`].init(state);
   }
 
   static showRules(state) {
-    routes[`RULES`].init(state);
+    Routes[`RULES`].init(state);
   }
 
   static showGame(state, data) {
     switch (data.type) {
       case `two-of-two`:
-        routes[`GAME_ONE`].init(state, data);
+        Routes[`GAME_ONE`].init(state, data);
         break;
       case `tinder-like`:
-        routes[`GAME_TWO`].init(state, data);
+        Routes[`GAME_TWO`].init(state, data);
         break;
       case `one-of-three`:
-        routes[`GAME_THREE`].init(state, data);
+        Routes[`GAME_THREE`].init(state, data);
         break;
     }
   }
 
   static showStats(state) {
-    routes[`STATS`].init(state);
+    Routes[`STATS`].init(state);
     location.hash = `stats?${saveState(state)}`;
   }
 
