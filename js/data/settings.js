@@ -8,7 +8,8 @@ const Settings = {
   LEVEL_TIME: 30,
   FAST_TIME: 20,
   SLOW_TIME: 10,
-  WARNING_TIME: 5
+  WARNING_TIME: 5,
+  FADE_TIME: 600
 };
 
 export default Settings;

@@ -74,3 +74,18 @@
     background-color: #c6a5a5;
   }
 }
+
+.rules__fade {
+  position: fixed;
+  left: 0;
+  top: 8px;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #a8c8c4 linear-gradient(to bottom left, #ccdeeb, #84b39e) no-repeat;
+  animation-name: fade;
+  animation-duration: 0.6s;
+  animation-fill-mode: backwards;
+}
