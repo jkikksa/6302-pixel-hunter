@@ -9,7 +9,6 @@ const Settings = {
   FAST_TIME: 20,
   SLOW_TIME: 10,
   WARNING_TIME: 5,
-  FADE_TIME: 600
 };
 
 export default Settings;
