@@ -16,12 +16,11 @@ class StatsModel {
     if (isDataValid) {
       this._statistics = data;
     } else {
-      this._statistics = [{
-        lives: this.state.lives,
-        answers: this.state.answers
-      }];
+      this.setDefaultStatistics();
     }
   }
+
+
 
   get gameStatistics() {
     return this._statistics.reduceRight((acc, it) => {
@@ -35,6 +34,13 @@ class StatsModel {
 
   updateState(newState) {
     this.state = newState;
+  }
+
+  setDefaultStatistics() {
+    this._statistics = [{
+      lives: this.state.lives,
+      answers: this.state.answers
+    }];
   }
 }
 

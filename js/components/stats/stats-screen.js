@@ -11,14 +11,21 @@ class StatsScreen {
 
   async init(state) {
     this.model.updateState(state);
-    this.model.gameStatistics = await APIService.loadStatistics(this.model.playerName);
-    this.view = new StatsView(this.model.gameStatistics);
-    changeView(this.view);
+    try {
+      this.model.gameStatistics = await APIService.loadStatistics(this.model.playerName);
+    } catch (error) {
+      // eslint-disable-next-line
+      window.alert(`Произошла ошибка загрузки статистики!`);
+      this.model.setDefaultStatistics();
+    } finally {
+      this.view = new StatsView(this.model.gameStatistics);
+      changeView(this.view);
 
-    this.view.onBackButtonClicked = () => {
-      App.startGame();
-      history.pushState(``, document.title, window.location.pathname);
-    };
+      this.view.onBackButtonClicked = () => {
+        App.startGame();
+        history.pushState(``, document.title, window.location.pathname);
+      };
+    }
   }
 }
 
