@@ -13,7 +13,10 @@ class APIService {
    */
   static async getData() {
     const response = await fetch(Url.DATA);
-    return response.json();
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(`Ошибка загрузки данных игры`);
   }
 
   /**
@@ -39,7 +42,10 @@ class APIService {
    */
   static async loadStatistics(username) {
     const response = await fetch(`${Url.STATISTICS}${username}`);
-    return response.json();
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(`Ошибка загрузки статистики`);
   }
 
   /**

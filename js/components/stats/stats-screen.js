@@ -15,7 +15,7 @@ class StatsScreen {
       this.model.gameStatistics = await APIService.loadStatistics(this.model.playerName);
     } catch (error) {
       // eslint-disable-next-line
-      window.alert(`Произошла ошибка загрузки статистики!`);
+      window.alert(`Произошла ошибка: ${error.message}! Попробуйте еще раз позже`);
       this.model.setDefaultStatistics();
     } finally {
       this.view = new StatsView(this.model.gameStatistics);

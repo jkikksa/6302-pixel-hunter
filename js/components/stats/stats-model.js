@@ -20,8 +20,6 @@ class StatsModel {
     }
   }
 
-
-
   get gameStatistics() {
     return this._statistics.reduceRight((acc, it) => {
       acc.push({

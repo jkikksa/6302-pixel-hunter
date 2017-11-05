@@ -89,18 +89,19 @@ class Application {
   }
 
   static async startGame() {
-    if (typeof this.data === `undefined`) {
-      this.showIntro();
-      try {
+    this.showIntro();
+    try {
+      if (typeof this.data === `undefined`) {
         await this._loadAllGameData();
-      } catch (error) {
-        // eslint-disable-next-line
-        window.alert(`Произошла ошибка получения данных игры! Попробуйте еще раз позже`);
       }
+      this.showGreeting();
+    } catch (error) {
+      // eslint-disable-next-line
+      window.alert(`Произошла ошибка: ${error.message}! Попробуйте еще раз позже`);
     }
-    this.showGreeting();
   }
 }
 
 export default Application;
+
 
