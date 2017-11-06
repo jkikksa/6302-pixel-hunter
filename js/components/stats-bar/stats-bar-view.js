@@ -1,5 +1,5 @@
 import AbstractView from '../abstract-view';
-import Settings from '../../data/settings';
+import {Settings, AnswerType, Correctness} from '../../data/settings';
 
 class StatsBarView extends AbstractView {
   constructor(answers) {
@@ -9,11 +9,11 @@ class StatsBarView extends AbstractView {
 
   get template() {
     const statsBarTemplate = this.answers.map((it) => {
-      if (it.correctness === `correct`) {
+      if (it.correctness === Correctness.CORRECT) {
         switch (it.type) {
-          case `fast`:
+          case AnswerType.FAST:
             return `<li class="stats__result stats__result--fast"></li>`;
-          case `slow`:
+          case AnswerType.SLOW:
             return `<li class="stats__result stats__result--slow"></li>`;
           default:
             return `<li class="stats__result stats__result--correct"></li>`;

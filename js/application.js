@@ -89,13 +89,14 @@ class Application {
   }
 
   static async startGame() {
-    this.showIntro();
     try {
       if (typeof this.data === `undefined`) {
+        this.showIntro();
         await this._loadAllGameData();
       }
       this.showGreeting();
     } catch (error) {
+      this.showIntro();
       // eslint-disable-next-line
       window.alert(`Произошла ошибка: ${error.message}! Попробуйте еще раз позже`);
     }

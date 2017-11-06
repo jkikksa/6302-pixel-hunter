@@ -1,4 +1,4 @@
-import Settings from './settings';
+import {Settings, AnswerType, Correctness} from './settings';
 
 /**
  * @enum {string}
@@ -6,23 +6,6 @@ import Settings from './settings';
 const AnswersMap = {
   true: `correct`,
   false: `incorrect`
-};
-
-/**
- * @enum {string}
- */
-const AnswerType = {
-  FAST: `fast`,
-  SLOW: `slow`,
-  NORMAL: `normal`
-};
-
-/**
- * @enum {string}
- */
-const Correctness = {
-  CORRECT: `correct`,
-  INCORRECT: `incorrect`,
 };
 
 /**

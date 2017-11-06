@@ -2,7 +2,7 @@
  * Параметры игры.
  * @enum {number}
  */
-const Settings = {
+export const Settings = {
   LEVELS_COUNT: 10,
   LIVES: 3,
   LEVEL_TIME: 30,
@@ -11,4 +11,19 @@ const Settings = {
   WARNING_TIME: 5,
 };
 
-export default Settings;
+/**
+ * @enum {string}
+ */
+export const AnswerType = {
+  FAST: `fast`,
+  SLOW: `slow`,
+  NORMAL: `normal`
+};
+
+/**
+ * @enum {string}
+ */
+export const Correctness = {
+  CORRECT: `correct`,
+  INCORRECT: `incorrect`,
+};

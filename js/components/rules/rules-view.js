@@ -1,6 +1,6 @@
 import AbstractView from '../abstract-view';
 import footer from '../footer/footer-view';
-import Settings from '../../data/settings';
+import {Settings} from '../../data/settings';
 
 class RulesView extends AbstractView {
   get template() {
