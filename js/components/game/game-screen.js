@@ -1,5 +1,5 @@
 import GameModel from './game-model';
-import Settings from '../../data/settings';
+import {Settings} from '../../data/settings';
 import App from '../../application';
 
 class GameScreen {

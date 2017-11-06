@@ -1,5 +1,5 @@
 import AbstractView from '../abstract-view';
-import Settings from '../../data/settings';
+import {Settings} from '../../data/settings';
 
 class HeaderView extends AbstractView {
   get template() {
