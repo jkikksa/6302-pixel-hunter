@@ -9,17 +9,34 @@ const AnswersMap = {
 };
 
 /**
+ * @enum {string}
+ */
+const AnswerType = {
+  FAST: `fast`,
+  SLOW: `slow`,
+  NORMAL: `normal`
+};
+
+/**
+ * @enum {string}
+ */
+const Correctness = {
+  CORRECT: `correct`,
+  INCORRECT: `incorrect`,
+};
+
+/**
  * Возвращает тип ответа в зависимости от скорости ответа
  * @param {number} timeLeft
  * @return {string}
  */
 const getType = (timeLeft) => {
   if (timeLeft > Settings.FAST_TIME) {
-    return `fast`;
+    return AnswerType.FAST;
   } else if (timeLeft < Settings.SLOW_TIME) {
-    return `slow`;
+    return AnswerType.SLOW;
   }
-  return `normal`;
+  return AnswerType.NORMAL;
 };
 
 /**
@@ -94,7 +111,7 @@ export const addAnswer = (oldState, correctness) => {
   const newState = Object.assign({}, oldState);
   newState.answers = [...newState.answers, {
     correctness: AnswersMap[correctness],
-    type: AnswersMap[correctness] === `correct` ? getType(oldState.timeLeft) : `normal`
+    type: AnswersMap[correctness] === Correctness.CORRECT ? getType(oldState.timeLeft) : AnswerType.NORMAL
   }];
   return newState;
 };

@@ -1,6 +1,8 @@
 import AbstractView from '../abstract-view';
 import footer from '../footer/footer-view';
 
+const ANIMATION_TIME = 600;
+
 class GreetingView extends AbstractView {
   get template() {
     return `\
@@ -27,6 +29,16 @@ ${footer.template}`;
     nextButton.addEventListener(`click`, () => {
       this.onNextButtonClick();
     });
+  }
+
+  showPreview(callback) {
+    const screenPreview = this.render();
+    screenPreview.className = `rules__fade`;
+    document.body.appendChild(screenPreview);
+    setTimeout(() => {
+      callback();
+      document.body.removeChild(screenPreview);
+    }, ANIMATION_TIME);
   }
 
   onNextButtonClick() {

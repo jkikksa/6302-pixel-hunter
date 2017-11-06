@@ -59,8 +59,14 @@ class Application {
     const currentIndex = state.answers.length;
 
     if (currentIndex >= 10 || state.lives < 0) {
-      await APIService.sendStatistics(state.playerName.toLowerCase(), state);
-      this.showStats(state);
+      try {
+        await APIService.sendStatistics(state.playerName.toLowerCase(), state);
+      } catch (error) {
+        // eslint-disable-next-line
+        window.alert(`Произошла ошибка сохранения статистики!`);
+      } finally {
+        this.showStats(state);
+      }
     } else {
       this.showGame(state, this.data[currentIndex]);
     }
@@ -83,13 +89,19 @@ class Application {
   }
 
   static async startGame() {
-    if (typeof this.data === `undefined`) {
-      this.showIntro();
-      await this._loadAllGameData();
+    this.showIntro();
+    try {
+      if (typeof this.data === `undefined`) {
+        await this._loadAllGameData();
+      }
+      this.showGreeting();
+    } catch (error) {
+      // eslint-disable-next-line
+      window.alert(`Произошла ошибка: ${error.message}! Попробуйте еще раз позже`);
     }
-    this.showGreeting();
   }
 }
 
 export default Application;
+
 

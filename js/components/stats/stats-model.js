@@ -16,10 +16,7 @@ class StatsModel {
     if (isDataValid) {
       this._statistics = data;
     } else {
-      this._statistics = [{
-        lives: this.state.lives,
-        answers: this.state.answers
-      }];
+      this.setDefaultStatistics();
     }
   }
 
@@ -35,6 +32,13 @@ class StatsModel {
 
   updateState(newState) {
     this.state = newState;
+  }
+
+  setDefaultStatistics() {
+    this._statistics = [{
+      lives: this.state.lives,
+      answers: this.state.answers
+    }];
   }
 }
 

@@ -3,6 +3,14 @@ import GameScreen from './game-screen';
 import {changeView} from '../../utils';
 import App from '../../application';
 
+/**
+ * @enum {string}
+ */
+const QuestionType = {
+  PHOTO: `photo`,
+  PAINT: `painting`
+};
+
 class GameThreeScreen extends GameScreen {
   constructor() {
     super();
@@ -21,7 +29,7 @@ class GameThreeScreen extends GameScreen {
 
   init(state, data) {
     this.rightAnswers = data.answers.map((it) => it.type);
-    this.questionType = data.question === `Найдите фото среди изображений` ? `photo` : `painting`;
+    this.questionType = data.question === `Найдите фото среди изображений` ? QuestionType.PHOTO : QuestionType.PAINT;
     this.model.updateState(state);
     this.view = new GameThreeView(data, this.onAnswer, this.model.answers, this.onBackButtonClicked);
     changeView(this.view);

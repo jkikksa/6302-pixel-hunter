@@ -48,7 +48,7 @@ export const loadState = (dataString) => {
   }
 };
 
-export const update = (cnt, element) => {
-  cnt.innerHTML = ``;
-  cnt.appendChild(element);
+export const update = (parentElement, element) => {
+  parentElement.innerHTML = ``;
+  parentElement.appendChild(element);
 };
