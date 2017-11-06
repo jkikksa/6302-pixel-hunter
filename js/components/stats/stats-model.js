@@ -11,7 +11,10 @@ class StatsModel {
 
   set gameStatistics(data) {
     const isDataValid = data.every((it) => {
-      return it.hasOwnProperty(`lives`) && it.hasOwnProperty(`answers`);
+      return it.hasOwnProperty(`lives`)
+          && it.hasOwnProperty(`answers`)
+          && it.hasOwnProperty(`playerName`)
+          && it.hasOwnProperty(`timeLeft`);
     });
     if (isDataValid) {
       this._statistics = data;
